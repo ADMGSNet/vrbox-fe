@@ -1,0 +1,54 @@
+<div
+  #container
+  class="z_combobox_container"
+  [hidden]="hidden"
+>
+  @if (showErrors) {
+    <div class="z_combobox_errors">
+      <ng-content select=".errors"></ng-content>
+    </div>
+  }
+
+  <z-textbox
+    #tb
+    class="z_combobox_textbox"
+    hideButtons
+    hideNumbers
+    preventDefaultUpAndDownArrowEvents
+    [label]="label"
+    [iconName]="iconName"
+    [base64Icon]="base64Icon"
+    [locked]="disableFiltering"
+    [hideClearButton]="hideClearButton"
+    [placeholder]="placeholder"
+    (onClear)="onClear()"
+    (onEscape)="onEscape()"
+    (onEnter)="onEnter()"
+    (onBlur)="onBlur()"
+    (onArrowUp)="onArrowUp()"
+    (onArrowDown)="onArrowDown()"
+    (onChange)="onFilterChange()"
+    (onClear)="focus()"
+  >
+  </z-textbox>
+
+  <z-button
+    class="z_combobox_arrow"
+    [type]="ZButtonType.Toggle"
+    transparent
+    stopEventsOnMouseDownOrTouchStart
+    unfocusable
+    [class.opened]="isPopupOpened"
+    (onClick)="onArrowClick($event)"
+  >
+    <z-icon
+      class="z_combobox_arrow_symbol"
+      [class.rotated]="isPopupOpened"
+      [icon]="openUpwards ? ZIcon.ChevronUp : ZIcon.ChevronDown"
+    ></z-icon>
+  </z-button>
+</div>
+
+<ng-template #template>
+  <ng-content></ng-content>
+</ng-template>

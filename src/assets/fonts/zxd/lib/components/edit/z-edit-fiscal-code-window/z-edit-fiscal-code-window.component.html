@@ -1,0 +1,92 @@
+<z-window
+  #w
+  class="z_edit_fiscal_code_window"
+  width="400px"
+  hideStickies
+  [caption]="Label.fiscalCode"
+  [hideConfirmButton]="formControl.invalid || (required && !formControl.value)"
+  (onConfirm)="onEnter()"
+  (onClose)="closeEvent.emit()"
+>
+  <form
+    [formGroup]="form"
+    class="form"
+  >
+    <z-textbox
+      #tb
+      class="z_edit_fiscal_code_textbox"
+      maxLength="16"
+      showNumbers
+      [label]="Label.fiscalCode"
+      [textTransform]="ZTextTransform.Uppercase"
+      [formControlName]="Field.Text"
+      [showErrors]="formControl.touched && formControl.invalid"
+      (onChange)="text_onChange(tb.text)"
+      (onEscape)="w.close()"
+      (onEnter)="onEnter()"
+    >
+      <ng-container class="errors">
+        @if (formControl.touched && formControl.invalid) {
+          @if (formControl.hasError(ZError.Required)) {
+            <div class="error">
+              <div class="message">
+                {{ Label.fiscalCodeIsMandatory }}
+              </div>
+            </div>
+          }
+
+          @if (formControl.hasError(ZError.Invalid)) {
+            <div class="error">
+              <div class="message">
+                {{ Label.fiscalCodeNotValid }}
+              </div>
+            </div>
+          }
+
+          @if (formControl.hasError(ZError.LastChar)) {
+            <div class="error">
+              <div
+                class="message"
+                [innerHTML]="Label.fiscalCode_lastChar.replace('$1', parsed.lastChar!) | safe"
+              ></div>
+            </div>
+          }
+        }
+      </ng-container>
+    </z-textbox>
+  </form>
+
+  <div class="z_edit_fiscal_code_result">
+    <div class="z_edit_fiscal_code_item z_edit_fiscal_code_sex">
+      <div class="z_edit_fiscal_code_result_label">{{ Label.sex }}:</div>
+      <div class="z_edit_fiscal_code_result_value">{{ sex }}</div>
+    </div>
+
+    <div class="z_edit_fiscal_code_item z_edit_fiscal_code_birthdate">
+      <div class="z_edit_fiscal_code_result_label">{{ Label.birthdate }}:</div>
+      <div class="z_edit_fiscal_code_result_value">{{ birthdate }}</div>
+    </div>
+
+    <div class="z_edit_fiscal_code_item z_edit_fiscal_code_birtplace">
+      <div class="z_edit_fiscal_code_result_label">{{ Label.birthplace }}:</div>
+      <div class="z_edit_fiscal_code_result_value">
+        <div class="z_edit_fiscal_code_result_birthplace">
+          {{ birthplace }}
+
+          @if (flag) {
+            <img
+              class="z_edit_fiscal_code_flag"
+              src="{{ flag }}"
+            />
+          }
+
+          @if (countryName) {
+            <div class="z_edit_fiscal_code_result_value">
+              {{ countryName }}
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</z-window>

@@ -1,0 +1,15 @@
+<z-button
+  #b_months
+  alwaysShowFocusOutline
+  class="z_datepicker_window_button {{ position }} z_datepicker_window_button_months"
+  [tabIndex]="index"
+  (onFocus)="openPopup()"
+  (onTab)="closePopup()"
+  (onShiftTab)="closePopup()"
+  (onEnter)="onEnter()"
+  (onKeyDown)="onKeyDown($event)"
+  (onKeyUp)="onKeyUp($event)"
+  (onMouseDown)="onMouseDown()"
+>
+  {{ monthName }}
+</z-button>

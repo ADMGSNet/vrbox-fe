@@ -1,0 +1,50 @@
+.host {
+  pointer-events: none;
+}
+
+.z_drag_icon_icon {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  pointer-events: none;
+  z-index: 10002;
+  display: block;
+}
+
+.z_drag_icon_page {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  transform: translate(-50%, -50%);
+
+  svg {
+    position: relative;
+    width: 30px;
+    height: 30px;
+
+    .p_1 {
+      fill: #fff;
+    }
+
+    .p_2 {
+      fill: #aaa;
+    }
+  }
+}
+
+.z_drag_icon_number {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  padding: 5px 10px;
+  border-radius: 50px;
+  background-color: var(--color_700);
+  font-size: 15px;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+}

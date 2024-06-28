@@ -1,0 +1,22 @@
+.flex_end {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.z_messagebox_button {
+  position: relative;
+  width: 90px;
+
+  .z_messagebox_check_icon {
+    font-size: 14px;
+  }
+
+  & ::ng-deep .z_button_container {
+    &.default {
+      .z_messagebox_check_icon {
+        color: teal;
+      }
+    }
+  }
+}

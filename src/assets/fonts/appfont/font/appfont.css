@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "appfont";
+  src: url('appfont.eot?t=1678904088256'); /* IE9*/
+  src: url('appfont.eot?t=1678904088256#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url("appfont.woff2?t=1678904088256") format("woff2"),
+  url("appfont.woff?t=1678904088256") format("woff"),
+  url('appfont.ttf?t=1678904088256') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('appfont.svg?t=1678904088256#appfont') format('svg'); /* iOS 4.1- */
+  
+}
+
+[class^="appfont-"], [class*=" appfont-"] {
+  font-family: 'appfont' !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.appfont-home:before { content: "\ea01"; }

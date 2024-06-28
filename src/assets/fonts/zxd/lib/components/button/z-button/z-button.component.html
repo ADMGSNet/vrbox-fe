@@ -1,0 +1,36 @@
+<div
+  #container
+  class="z_button_container"
+  [attr.tabindex]="isDisabled ? undefined : tabIndex"
+  [attr.data-tooltip]="tooltip ? tooltip : undefined"
+  [attr.data-tooltip-hoverable]="tooltip && isTooltipHoverable ? true : undefined"
+  [class.disabled]="isDisabled"
+  [class.squared]="squared"
+  [class.circular]="circular"
+  [class.z_button_transparent]="transparent"
+  [class.z_button_pointer]="!!url"
+>
+  <div
+    #content
+    class="z_button_content"
+  >
+    <ng-content></ng-content>
+  </div>
+  <div
+    #surface
+    class="z_button_surface zxd_absolute zxd_trasparent"
+  ></div>
+
+  @if (isDisabled) {
+    <div class="disabled zxd_absolute zxd_transparent"></div>
+  }
+</div>
+
+@if (focusable) {
+  <div
+    #focus
+    class="zxd_absolute z_button_focus"
+    [class.squared]="squared"
+    [class.circular]="circular"
+  ></div>
+}

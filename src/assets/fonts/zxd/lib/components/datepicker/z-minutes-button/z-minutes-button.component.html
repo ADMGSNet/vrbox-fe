@@ -1,0 +1,15 @@
+<z-button
+  #b_minutes
+  class="z_datepicker_window_button {{ ZDatePickerButtonPosition.Right }} z_datepicker_window_button_minutes"
+  alwaysShowFocusOutline
+  [tabIndex]="index"
+  (onFocus)="openPopup()"
+  (onEnter)="onEnter($event)"
+  (onTab)="closePopup()"
+  (onShiftTab)="closePopup()"
+  (onKeyDown)="onKeyDown($event)"
+  (onKeyUp)="onKeyUp($event)"
+  (onMouseDown)="onMouseDown()"
+>
+  {{ mm }}
+</z-button>

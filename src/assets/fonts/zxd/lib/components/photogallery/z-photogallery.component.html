@@ -1,0 +1,90 @@
+<div
+  #window
+  class="z_photogallery_window"
+  tabindex="0"
+>
+  <div class="z_photogallery_container">
+    <div class="z_photogallery_body">
+      @if (index > 0) {
+        <z-icon-button
+          class="z_photogallery_arrow_button left"
+          transparent
+          unfocusable
+          [icon]="ZIcon.ChevronLeft"
+          (onClick)="previousImage()"
+        >
+        </z-icon-button>
+      }
+
+      <div
+        class="z_photogallery_image"
+        [style.backgroundImage]="index >= 0 ? 'url('http://18.153.110.17:1200/fonts/ + images[index].src + ')' : undefined"
+      ></div>
+
+      @if (index < count - 1) {
+        <z-icon-button
+          class="z_photogallery_arrow_button right"
+          transparent
+          unfocusable
+          [icon]="ZIcon.ChevronRight"
+          (onClick)="nextImage()"
+        >
+        </z-icon-button>
+      }
+    </div>
+
+    <div class="z_photogallery_gallery">
+      <z-icon-button
+        class="z_photogallery_gallery_button"
+        transparent
+        unfocusable
+        [icon]="ZIcon.ChevronLeft"
+        (onClick)="scrollLeft()"
+      >
+      </z-icon-button>
+
+      <z-scrollable
+        #scrollable
+        class="z_photogallery_scrollbar"
+      >
+        <div class="z_photogallery_thumbnails">
+          @for (image of images; track i; let i = $index) {
+            <div
+              class="z_photogallery_thumbnail"
+              [class.selected]="i === index"
+              [attr.data-index]="i"
+              (click)="selectImage(i)"
+              (touchstart)="selectImage(i)"
+              [style.background-image]="'url('http://18.153.110.17:1200/fonts/ + image.src + ')'"
+            ></div>
+          }
+        </div>
+      </z-scrollable>
+
+      <z-icon-button
+        class="z_photogallery_gallery_button"
+        transparent
+        unfocusable
+        [icon]="ZIcon.ChevronRight"
+        (onClick)="scrollRight()"
+      >
+      </z-icon-button>
+    </div>
+
+    <z-button
+      class="z_photogallery_open_button"
+      circular
+      (onClick)="openImage()"
+    >
+      <z-icon [icon]="ZIcon.Maximize"></z-icon>
+    </z-button>
+
+    <z-button
+      class="z_photogallery_close_button"
+      circular
+      (onClick)="close()"
+    >
+      <z-icon [icon]="ZIcon.Cross"></z-icon>
+    </z-button>
+  </div>
+</div>

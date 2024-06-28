@@ -1,0 +1,29 @@
+<div
+  #wrapper
+  class="z_scrollable_wrapper"
+>
+  <div
+    #container
+    class="z_scrollable_container"
+  >
+    <ng-content></ng-content>
+  </div>
+</div>
+
+@if (!isMobile) {
+  <z-scrollbar
+    #horizontalScrollbar
+    [type]="ZScrollBarType.Horizontal"
+    [target]="wrapper"
+    [showOnOver]="showOnOver"
+    [style.left.px]="marginLeft"
+  ></z-scrollbar>
+
+  <z-scrollbar
+    #verticalScrollbar
+    [type]="ZScrollBarType.Vertical"
+    [target]="wrapper"
+    [showOnOver]="showOnOver"
+    [style.top.px]="marginTop"
+  ></z-scrollbar>
+}

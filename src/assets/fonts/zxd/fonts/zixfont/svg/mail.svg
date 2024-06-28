@@ -1,0 +1,6 @@
+<svg width="100%" height="100%" viewBox="0 0 64 64" version="1.1"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+  xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+  <path d="M0,8l64,0l0,8.934l-32,18.079l-32,-18.079l0,-8.934Zm0,14.643l16.32,9.198l-16.32,16.97l0,-26.168Zm64,-0l0,26.168l-16.32,-16.97l16.32,-9.198Zm-43.2,11.736l11.2,6.343l11.2,-6.343l20.8,21.621l-64,-0l20.8,-21.621Z"/>
+</svg>

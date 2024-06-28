@@ -1,0 +1,180 @@
+<div
+  #window
+  class="z_datepicker_window"
+  (onTab)="onTab()"
+  (onConfirm)="onConfirm()"
+>
+  @if (b_days.reverse) {
+    <div class="z_datepicker_window_selection_buttons">
+      <ng-container *ngTemplateOutlet="template_selection"></ng-container>
+    </div>
+  } @else {
+    <div class="z_datepicker_window_shortcuts">
+      <ng-container *ngTemplateOutlet="template"></ng-container>
+    </div>
+  }
+
+  <div class="z_datepicker_window_flex">
+    <div class="z_datepicker_window_date">
+      <div class="z_datepicker_window_buttons">
+        <z-days-button
+          #b_days
+          class="z_datepicker_window_button z_datepicker_window_days_button"
+          [locale]="locale"
+          (onDayClick)="onDayClick()"
+          (onEnter)="onConfirm()"
+          (onTab)="b_months.focus()"
+          (onChangeSelection)="onChangeSelection($event); b_days.focus()"
+        >
+        </z-days-button>
+        <z-months-button
+          #b_months
+          class="z_datepicker_window_button z_datepicker_window_months_button"
+          [locale]="locale"
+          (onEnter)="onConfirm()"
+          (onTab)="b_years.focus()"
+          (onChangeSelection)="onChangeSelection($event); b_months.focus()"
+        >
+        </z-months-button>
+        <z-years-button
+          #b_years
+          class="z_datepicker_window_button z_datepicker_window_years_button"
+          [locale]="locale"
+          (onEnter)="onConfirm()"
+          (onChangeSelection)="onChangeSelection($event); b_years.focus()"
+        >
+        </z-years-button>
+      </div>
+
+      <z-icon-button
+        class="z_datepicker_window_clear_button"
+        unfocusable
+        circular
+        [class.reverse]="b_days.reverse"
+        [style.display]="dateTimeString === nullDateTimeString ? 'none' : 'block'"
+        [icon]="ZIcon.CircleCross"
+        [tooltip]="Label.clearDate"
+        (onClick)="b_clearDate_onClick()"
+      >
+      </z-icon-button>
+    </div>
+
+    <div
+      class="z_datepicker_window_time"
+      [hidden]="hideTime"
+    >
+      <div class="z_datepicker_window_buttons">
+        <z-hours-button
+          #b_hours
+          class="z_datepicker_window_button z_datepicker_window_hours_button"
+          [locale]="locale"
+          (onEnter)="onConfirm()"
+          (onChangeSelection)="onChangeSelection($event); b_hours.focus()"
+        >
+        </z-hours-button>
+        <z-minutes-button
+          #b_minutes
+          class="z_datepicker_window_button z_datepicker_window_minutes_button"
+          [locale]="locale"
+          (onEnter)="onConfirm()"
+          (onChangeSelection)="onChangeSelection($event); b_minutes.focus()"
+        >
+        </z-minutes-button>
+      </div>
+
+      <z-icon-button
+        class="z_datepicker_window_clear_button"
+        unfocusable
+        circular
+        [class.reverse]="b_days.reverse"
+        [style.display]="dateTimeString === nullDateTimeString ? 'none' : 'block'"
+        transparent
+        [tooltip]="Label.clearTime"
+        (onClick)="b_clearTime_onClick()"
+      >
+      </z-icon-button>
+
+      @if (showAmOrPm) {
+        <div class="z_datepicker_window_am_pm">
+          @if (showAM) {
+            <div class="z_datepicker_window_am">AM</div>
+          }
+          @if (showPM) {
+            <div class="z_datepicker_window_pm">PM</div>
+          }
+        </div>
+      }
+
+      <div class="z_datepicker_window_colon">
+        <div [hidden]="hideColon">:</div>
+      </div>
+    </div>
+  </div>
+
+  @if (b_days.reverse) {
+    <div class="z_datepicker_window_shortcuts reverse">
+      <ng-container *ngTemplateOutlet="template"></ng-container>
+    </div>
+  } @else {
+    <div class="z_datepicker_window_selection_buttons reverse">
+      <ng-container *ngTemplateOutlet="template_selection"></ng-container>
+    </div>
+  }
+</div>
+
+<ng-template #template>
+  <z-button
+    #b_today
+    class="z_datepicker_window_button z_datepicker_window_today_button"
+    transparent
+    (onClick)="b_today_onClick()"
+  >
+    <z-icon [icon]="ZIcon.Today"></z-icon>
+    <div class="label">{{ Label.today }}</div>
+  </z-button>
+
+  @if (showTime) {
+    <z-button
+      #b_now
+      class="z_datepicker_window_button z_datepicker_window_now_button"
+      transparent
+      (onClick)="b_now_onClick()"
+    >
+      <z-icon [icon]="ZIcon.Clock"></z-icon>
+      <div class="label">{{ Label.now }}</div>
+    </z-button>
+  }
+</ng-template>
+
+<ng-template #template_selection>
+  <z-button
+    #b_cancel
+    class="z_datepicker_window_selection_button visible"
+    preventDefaultOnShiftTab
+    (onClick)="close()"
+    (onShiftTab)="b_confirm.focus()"
+  >
+    <z-icon
+      class="z_datepicker_window_selection_cancel_icon"
+      [icon]="ZIcon.Cross"
+      [position]="ZIconPosition.Left"
+    ></z-icon>
+    <span class="z_datepicker_window_selection_label">{{ Label.cancel }}</span>
+  </z-button>
+
+  <z-button
+    #b_confirm
+    class="z_datepicker_window_selection_button"
+    preventDefaultOnTab
+    [class.visible]="isDateValid"
+    (onClick)="onConfirm()"
+    (onTab)="b_cancel.focus()"
+  >
+    <z-icon
+      class="z_datepicker_window_selection_yes_icon"
+      [icon]="ZIcon.Check"
+      [position]="ZIconPosition.Left"
+    ></z-icon>
+    <span class="z_datepicker_window_selection_label">{{ Label.confirm }}</span>
+  </z-button>
+</ng-template>

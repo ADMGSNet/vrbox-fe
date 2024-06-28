@@ -1,0 +1,120 @@
+<div
+  class="z_textbox_container"
+  [hidden]="hidden"
+>
+  @if (showErrors) {
+    <div class="z_textbox_errors">
+      <ng-content select=".errors"></ng-content>
+    </div>
+  }
+
+  <div
+    class="z_textbox_label"
+    [innerHTML]="label | safe"
+  ></div>
+
+  <div
+    class="z_textbox_body"
+    [class.disabled]="disabled"
+  >
+    <div
+      class="z_textbox_border"
+      [class.focused]="focused"
+      [class.red]="showErrors"
+    ></div>
+
+    <div class="z_textbox_box">
+      @if (showIcon) {
+        <div class="z_textbox_icon">
+          <div class="z_textbox_icon_container">
+            @if (iconName) {
+              <z-icon [icon]="iconName"></z-icon>
+            }
+            @if (base64Icon) {
+              <img [src]="base64Icon" />
+            }
+          </div>
+        </div>
+      }
+
+      @if (prefix && length > 0) {
+        <div
+          class="z_textbox_prefix"
+          [innerHTML]="prefix | safe"
+        ></div>
+      }
+
+      <div class="z_textbox_input_container">
+        @if (!length) {
+          <div
+            class="z_textbox_placeholder"
+            [class.disabled]="disabled"
+            [innerHTML]="placeholder | safe"
+          ></div>
+        }
+
+        <input
+          #input_element
+          class="z_textbox_input"
+          [type]="inputType"
+          [attr.tabindex]="isFocusable ? tabIndex : ''"
+          [attr.autocomplete]="autocomplete ? autocomplete : undefined"
+          [attr.spellcheck]="spellcheck ? spellcheck : undefined"
+          [attr.inputmode]="inputMode ? inputMode : undefined"
+          [attr.pattern]="pattern ? pattern : undefined"
+          [class.uppercase]="_textTransform === ZTextTransform.Uppercase"
+          [class.lowercase]="_textTransform === ZTextTransform.Lowercase"
+          [class.capitalize]="_textTransform === ZTextTransform.Capitalize"
+          [class.disabled]="disabled"
+          [class.locked]="isLocked"
+          [disabled]="disabled"
+        />
+      </div>
+
+      @if (suffix && length > 0) {
+        <div
+          class="z_textbox_suffix"
+          [innerHTML]="suffix | safe"
+        ></div>
+      }
+
+      @if (!disabled && showClearButton && input_element.value) {
+        <z-icon-button
+          class="z_textbox_clear_button"
+          transparent
+          stopEventsOnMouseDownOrTouchStart
+          unfocusable
+          [icon]="ZIcon.CircleCross"
+          [visible]="showClearButton && length > 0 && !disabled"
+          [tooltip]="clearTooltip"
+          (onClick)="doClear(true)"
+        >
+        </z-icon-button>
+      }
+    </div>
+  </div>
+
+  @if (showNumbers) {
+    <div
+      class="z_textbox_footer"
+      (mousedown)="onFooterMouseDownOrTouchStart($event)"
+      (touchStart)="onFooterMouseDownOrTouchStart($event)"
+    >
+      <div
+        class="z_textbox_nums"
+        [style.visibility]="focused && maxLength ? 'visible' : 'hidden'"
+        [class.visible]="showNumbers"
+      >
+        <div class="z_textbox_nums_container">
+          <div class="z_textbox_num">{{ length }}</div>
+          <div class="z_textbox_separator">/</div>
+          <div class="z_textbox_count">{{ maxLength }}</div>
+          <div class="z_textbox_brackets">
+            (<span class="z_textbox_charsLeft">{{ length - +maxLength }}</span
+            >)
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

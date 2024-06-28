@@ -1,0 +1,147 @@
+.z_months_popup {
+  position: fixed;
+  width: 285px;
+  background-color: #fff;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+  border-radius: 10px;
+  display: none;
+  z-index: 1001;
+
+  &.visible {
+    display: block;
+  }
+}
+
+.z_months_popup_rectangle {
+  position: relative;
+  overflow: hidden;
+}
+
+.z_months_popup_navigator {
+  position: relative;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, .12), inset 0 -1px 0 0 #dadce0;
+  height: 36px;
+  display: flex;
+  align-items: center;
+}
+
+.z_months_popup_previous_year,
+.z_months_popup_next_year {
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+
+.z_months_popup_year_button {
+  position: relative;
+  flex: 1;
+  width: auto;
+  height: 30px;
+  font-size: 14px;
+  margin: 0 5px;
+
+  & ::ng-deep .z_button_container {
+    border-color: transparent;
+  }
+}
+
+.z_months_popup_year_label {
+  position: relative;
+  flex: 1;
+  width: auto;
+  height: 30px;
+  line-height: 32px;
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  margin: 0 5px;
+  font-weight: 700;
+  user-select: none;
+}
+
+.symbol {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    fill: #999;
+    width: 14px;
+  }
+
+  &.content_over svg {
+    fill: #499bd6;
+  }
+
+  &.content_down svg {
+    fill: #01509e;
+  }
+}
+
+.z_months_popup_months {
+  position: relative;
+  margin: 5px 0;
+  flex: 1;
+  display: flex;
+}
+
+.z_months_popup_left,
+.z_months_popup_right {
+  position: relative;
+  flex: 1;
+  flex-direction: column;
+}
+
+.z_months_popup_middle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0px;
+  border-left: solid 1px #ddd;
+  border-right: solid 1px #fff;
+  bottom: 0;
+}
+
+.z_months_popup_month_button {
+  position: relative;
+  width: auto;
+  height: 30px;
+  margin: 0 5px;
+  font-weight: normal;
+  font-size: 14px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  cursor: pointer;
+  border: solid 1px transparent;
+  border-radius: 6px;
+  padding: 0 7px;
+
+  &:hover {
+    border: solid 1px #ccc;
+  }
+
+  &.selected {
+    border-color: var(--color_600);
+    background-color: var(--color_600);
+    color: var(--text_color_600);
+  }
+
+  &:active {
+    border-color: var(--color_700);
+    background-color: var(--color_700);
+    color: var(--text_color_700);
+  }
+
+  &.disabled {
+    border: solid 1px transparent;
+    background-color: #fff;
+    color: #aaa;
+    cursor: default;
+  }
+}

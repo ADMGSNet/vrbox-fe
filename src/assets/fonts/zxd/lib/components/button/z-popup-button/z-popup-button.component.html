@@ -1,0 +1,28 @@
+<z-button
+  #button
+  class="z_popup_button"
+  [type]="ZButtonType.Toggle"
+  [selected]="isPopupOpened"
+  [transparent]="transparent"
+  [squared]="squared"
+  [circular]="circular"
+  (onKeyDown)="onKeyDown($event)"
+  (onClick)="onClick()"
+  (onBlur)="onBlur()"
+>
+  <div
+    class="z_popup_button_label"
+    [innerHTML]="label | safe"
+  ></div>
+  @if (showArrow) {
+    <z-icon
+      class="z_popup_button_arrow_symbol"
+      [class.rotated]="isPopupOpened"
+      [icon]="openUpwards ? ZIcon.ChevronUp : ZIcon.ChevronDown"
+    ></z-icon>
+  }
+</z-button>
+
+<ng-template #template>
+  <ng-content></ng-content>
+</ng-template>

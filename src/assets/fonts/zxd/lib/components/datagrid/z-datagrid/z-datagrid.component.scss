@@ -1,0 +1,407 @@
+$color: var(--grey_700);
+$line_color: var(--grey_100);
+$border_color: var(--grey_150);
+$header_color: var(--grey_500);
+$header_bottom_border_color: var(--grey_150);
+$item_bottom_border_color: var(--grey_50);
+$checkbox_bg_color_selected: var(--color_600);
+$bg_color_selected: var(--color_50);
+$bg_color_active: var(--color_100);
+$bg_color_down: var(--color_200);
+
+:host {
+  position: relative;
+  color: $color;
+  font-family: inherit;
+  display: block;
+
+  .hidden {
+    display: none;
+  }
+}
+
+.z_datagrid_container {
+  position: relative;
+  height: 100%;
+  outline: none;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+
+  &.focused {
+    .z_datagrid_header_cell {
+      border-bottom: solid 2px var(--color_600);
+    }
+
+    .z_datagrid_top_border {
+      background-color: var(--color_600);
+    }
+  }
+}
+
+.tb_currentPage {
+  margin-top: -1px;
+}
+
+.z_datagrid_top_border {
+  height: 2px;
+  background-color: var(--grey_150);
+}
+
+.z_datagrid_grid {
+  position: relative;
+  height: 100%;
+  border-bottom: solid 1px var(--grey_150);
+  background-color: transparent;
+
+  &.overflow_auto {
+    overflow: auto;
+  }
+
+  &.overflow_hidden {
+    overflow: hidden;
+  }
+}
+
+.z_datagrid_header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: stretch;
+  z-index: 2;
+
+  .z_datagrid_handle,
+  .z_datagrid_checkbox {
+    z-index: 3;
+  }
+}
+
+.z_datagrid_items {
+  position: relative;
+}
+
+.z_datagrid_item {
+  position: relative;
+  font-size: 14px;
+  color: $color;
+  user-select: none;
+  display: flex;
+  align-items: stretch;
+
+  &.z_datagrid_selected {
+
+    .z_datagrid_cell,
+    .z_datagrid_handle,
+    .z_datagrid_checkbox {
+      background-color: $bg_color_selected;
+      border-color: #fff;
+    }
+
+    .z_datagrid_handle .z_datagrid_container {
+      display: block !important;
+    }
+
+    .z_datagrid_drag {
+      display: block;
+    }
+
+    .z_datagrid_checkbox_square {
+      border-color: $checkbox_bg_color_selected;
+      background-color: $checkbox_bg_color_selected;
+    }
+
+    .z_datagrid_checkbox_checkmark {
+      opacity: 1;
+    }
+  }
+
+  &.z_datagrid_active {
+
+    .z_datagrid_cell,
+    .z_datagrid_checkbox {
+      background-color: $bg_color_active;
+      border-color: #fff;
+    }
+  }
+
+  &.z_datagrid_down {
+    background-color: $bg_color_down;
+
+    .z_datagrid_cell,
+    .z_datagrid_checkbox {
+      background-color: $bg_color_down;
+      border-color: #fff;
+    }
+  }
+
+  &.z_datagrid_item_disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    font-style: italic;
+
+    .z_datagrid_target {
+      pointer-events: all;
+    }
+  }
+}
+
+.z_datagrid_scrollable {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.z_datagrid_header_cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2px;
+  border-bottom: solid 2px $header_bottom_border_color;
+  overflow: hidden;
+  color: $header_color;
+
+  &.z_datagrid_checkbox {
+    padding: 0;
+  }
+}
+
+.z_datagrid_header_filter {
+  position: relative;
+  flex: 1;
+  margin: 0 10px;
+}
+
+.z_datagrid_cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-bottom: solid 1px $item_bottom_border_color;
+  border-right: solid 1px $item_bottom_border_color;
+  overflow: hidden;
+  color: #fff;
+  background-color: transparent;
+}
+
+.z_datagrid_align_left {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.z_datagrid_align_center {
+  justify-content: center;
+  text-align: center;
+}
+
+.z_datagrid_align_right {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.z_datagrid_cell_content {
+  position: relative;
+}
+
+.z_datagrid_header_handle {
+  position: sticky;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  min-width: 34px;
+  max-width: 34px;
+  z-index: 1;
+  background-color: #fff;
+}
+
+.z_datagrid_handle {
+  position: sticky;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  min-width: 34px;
+  max-width: 34px;
+  z-index: 1;
+  background-color: #fff;
+  border-left: solid 1px $item_bottom_border_color;
+  border-right: solid 1px $item_bottom_border_color;
+  border-bottom: solid 1px $item_bottom_border_color;
+
+  .z_datagrid_drag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(1, 1, 1, 0.01);
+    cursor: move;
+    display: none;
+  }
+
+  .z_datagrid_dots {
+    position: relative;
+    display: flex;
+    cursor: move;
+    width: 9px;
+    height: 16px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .z_datagrid_dots_left,
+    .z_datagrid_dots_right {
+      position: relative;
+      width: 3px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .z_datagrid_dot {
+      position: relative;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background-color: var(--grey_400);
+    }
+  }
+}
+
+.z_datagrid_header_checkbox {
+  position: sticky;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  min-width: 34px;
+  max-width: 34px;
+  z-index: 1;
+  background-color: #fff;
+
+  .z-checkbox {
+    width: 34px;
+  }
+}
+
+.z_datagrid_checkbox {
+  position: sticky;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  min-width: 34px;
+  max-width: 34px;
+  z-index: 1;
+  background-color: #fff;
+  border-left: solid 1px $item_bottom_border_color;
+  border-right: solid 1px $item_bottom_border_color;
+  border-bottom: solid 1px $item_bottom_border_color;
+}
+
+.z_datagrid_checkbox_square {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  border: solid 2px var(--grey_200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.z_datagrid_checkbox_checkmark {
+  opacity: 0;
+  transition: opacity 0.3s linear;
+  color: #fff;
+  font-size: 12px;
+}
+
+.z_datagrid_border_left {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background-color: $border_color;
+  z-index: 1;
+}
+
+.z_datagrid_border_right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 1px;
+  background-color: $border_color;
+  z-index: 1;
+}
+
+.z_datagrid_sort_button {
+  width: 20px;
+  margin-left: -10px;
+  height: 100%;
+
+  &.sorted {
+    .z_datagrid_sort_button_icon {
+      font-size: 12px;
+    }
+
+    & ::ng-deep .z_button_container {
+      &.default {
+        color: var(--color_700);
+      }
+    }
+  }
+
+  &.descending {
+    .z_datagrid_sort_button_icon {
+      transform: rotate(180deg);
+    }
+  }
+
+  & ::ng-deep .z_button_container {
+    &.default {
+      color: var(--grey_300);
+    }
+  }
+}
+
+.z_datagrid_sort_button_icon {
+  font-size: 14px;
+  transition: transform 0.25s ease-out;
+}
+
+.z_datagrid_target {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 16px;
+  z-index: 2;
+
+  &:hover {
+    background-color: antiquewhite;
+    border: dashed 1px #aaa;
+    z-index: 2;
+  }
+
+  &.z_datagrid_target_before {
+    top: -8px;
+  }
+
+  &.z_datagrid_target_after {
+    bottom: -8px;
+  }
+}
+
+.z_datagrid_status_bar {
+  z-index: 1;
+}

@@ -1,0 +1,20 @@
+<div
+  #popup
+  class="z_minutes_popup z_datepicker_button_popup"
+>
+  <div
+    #d_minutes
+    class="z_minutes_popup_minutes"
+  >
+    @for (m of data; track trackMinute) {
+      <div
+        class="z_minutes_popup_minute_button"
+        [class.disabled]="m.disabled"
+        [class.selected]="m.selected"
+        [attr.data-datetimestring]="m.dateTimeString"
+      >
+        {{ m.label }}
+      </div>
+    }
+  </div>
+</div>

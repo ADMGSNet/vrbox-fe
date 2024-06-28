@@ -1,0 +1,23 @@
+<z-window
+  #w
+  class="z_edit_boolean_window"
+  width="400px"
+  hideStickies
+  [caption]="caption"
+  (onConfirm)="onWindowConfirm()"
+>
+  <div class="z_edit_boolean_window_label">{{ label }}</div>
+  <div class="z_edit_boolean_window_radiobuttons">
+    <z-radiobutton
+      [checked]="value"
+      (onClick)="value = true; refresh()"
+      >{{ Label.yes }}
+    </z-radiobutton>
+
+    <z-radiobutton
+      [checked]="!value"
+      (onClick)="value = false; refresh()"
+      >{{ Label.no }}
+    </z-radiobutton>
+  </div>
+</z-window>

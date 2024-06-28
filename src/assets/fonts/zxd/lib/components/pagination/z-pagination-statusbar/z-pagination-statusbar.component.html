@@ -1,0 +1,106 @@
+<div
+  class="z_pagination_status_bar_container"
+  [style.backgroundColor]="backgroundColor"
+  [class.flex_end]="hideSelectedItems"
+>
+  @if (numPages > 1) {
+    <div class="z_pagination_status_bar_pages">
+      <z-icon-button
+        #b_previousPage
+        class="z_pagination_status_bar_previous_page_button"
+        transparent
+        circular
+        stopEventsOnMouseDownOrTouchStart
+        unfocusable
+        [icon]="ZIcon.ChevronLeft"
+        [style.visibility]="page > 1 ? 'visible' : 'hidden'"
+        [tooltip]="Label.gotoPreviousPage"
+        (onClick)="b_previousPage_onClick()"
+      >
+      </z-icon-button>
+
+      <div class="z_pagination_status_bar_page">{{ Label.page }}</div>
+
+      @if (numPages > 0) {
+        <z-numeric-textbox
+          #tb_currentPage
+          class="z_pagination_status_bar_page_textbox"
+          hideNumbers
+          hideClearButton
+          allowIncDec_01
+          allowIncDec_10
+          min="1"
+          [max]="numPages"
+          [numberType]="ZTextBoxNumberType.Integer"
+          [value]="page"
+          [unfocusable]="!isFocusable"
+          [attr.data-tooltip]="Label.currentPage"
+          (onCommit)="tb_currentPage_onChange(tb_currentPage)"
+          (onEnter)="tb_currentPage_onChange(tb_currentPage)"
+        >
+        </z-numeric-textbox>
+      }
+
+      <div class="z_pagination_status_bar_separator">/</div>
+      <div
+        class="z_pagination_status_bar_numPages"
+        [attr.data-tooltip]="Label.numPages"
+      >
+        {{ numPages }}
+      </div>
+      <!-- [(ngModel)]="page" -->
+
+      <z-icon-button
+        #b_nextPage
+        class="z_pagination_status_bar_previous_page_button"
+        transparent
+        circular
+        stopEventsOnMouseDownOrTouchStart
+        unfocusable
+        [icon]="ZIcon.ChevronRight"
+        [style.visibility]="page < numPages ? 'visible' : 'hidden'"
+        [tooltip]="Label.gotoNextPage"
+        (onClick)="b_nextPage_onClick()"
+      >
+      </z-icon-button>
+    </div>
+  }
+
+  @if (showNumFilteredItems) {
+    <div class="z_pagination_status_bar_items">
+      <z-icon
+        class="z_pagination_status_bar_funnel_icon"
+        [icon]="ZIcon.Funnel"
+      ></z-icon>
+
+      <div
+        class="z_pagination_status_bar_num_filtered_items"
+        [attr.data-tooltip]="Label.numFilteredItems"
+      >
+        {{ numFilteredItems }}
+      </div>
+      <div class="z_pagination_status_bar_separator">/</div>
+      <div
+        class="z_pagination_status_bar_num_items"
+        [attr.data-tooltip]="Label.numItems"
+      >
+        {{ numItems }}
+      </div>
+    </div>
+  }
+
+  @if (showSelectedItems) {
+    <div
+      class="z_pagination_status_bar_selectedItems"
+      [attr.data-tooltip]="Label.numSelectedItems"
+    >
+      <z-icon
+        class="z_pagination_status_bar_check_icon"
+        [icon]="ZIcon.Check"
+      ></z-icon>
+      <div class="z_pagination_status_bar_selected_count">
+        {{ numSelectedItems }}
+      </div>
+    </div>
+  }
+</div>

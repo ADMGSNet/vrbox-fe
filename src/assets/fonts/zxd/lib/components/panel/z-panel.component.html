@@ -1,0 +1,159 @@
+<div class="z_panel_titlebar">
+  <div class="z_panel_caption zxd_absolute">{{ caption }}</div>
+
+  <div class="z_panel_buttons zxd_absolute">
+    <div class="z_panel_left_buttons">
+      @if (showRemoveButton) {
+        <z-icon-button
+          class="z_panel_button"
+          squared
+          transparent
+          [icon]="ZIcon.Minus"
+          [tooltip]="getTooltip(ZCommand.Remove)"
+          (onClick)="removeEvent.emit()"
+        >
+        </z-icon-button>
+      }
+
+      @if (showCopyButton) {
+        <z-icon-button
+          class="z_panel_button"
+          squared
+          transparent
+          [icon]="ZIcon.Copy"
+          [tooltip]="getTooltip(ZCommand.Copy)"
+          (onClick)="copyEvent.emit()"
+        >
+        </z-icon-button>
+      }
+
+      @if (showUploadButton) {
+        <z-icon-button
+          class="z_panel_button"
+          squared
+          transparent
+          [icon]="ZIcon.Upload"
+          [tooltip]="getTooltip(ZCommand.Upload)"
+          (onClick)="uploadEvent.emit()"
+        >
+        </z-icon-button>
+      }
+
+      @if (showExportToPdfButton) {
+        <z-icon-button
+          class="z_panel_button"
+          squared
+          transparent
+          [icon]="ZIcon.Pdf"
+          [tooltip]="getTooltip(ZCommand.ExportToPdf)"
+          (onClick)="exportToPdfEvent.emit()"
+        >
+        </z-icon-button>
+      }
+
+      @if (showEditButton) {
+        <z-icon-button
+          class="z_panel_button"
+          squared
+          transparent
+          [icon]="ZIcon.Excel"
+          [tooltip]="getTooltip(ZCommand.ExportToExcel)"
+          (onClick)="exportToExcelEvent.emit()"
+        >
+        </z-icon-button>
+      }
+    </div>
+
+    <div class="z_panel_right_buttons">
+      @if (showRefreshButton) {
+        <z-icon-button
+          class="z_panel_button"
+          squared
+          transparent
+          [icon]="ZIcon.Refresh"
+          [tooltip]="getTooltip(ZCommand.Refresh)"
+          (onClick)="refreshEvent.emit()"
+        >
+        </z-icon-button>
+      }
+
+      @if (showOpenButton) {
+        <z-icon-button
+          class="z_panel_button"
+          squared
+          transparent
+          [icon]="ZIcon.Open"
+          [tooltip]="getTooltip(ZCommand.Open)"
+          (onClick)="openEvent.emit()"
+        >
+        </z-icon-button>
+      }
+
+      @if (showEditButton) {
+        <z-icon-button
+          class="z_panel_button"
+          squared
+          transparent
+          [icon]="ZIcon.Edit"
+          [tooltip]="getTooltip(ZCommand.Edit)"
+          (onClick)="editEvent.emit()"
+        >
+        </z-icon-button>
+      }
+
+      @if (showDownloadButton) {
+        <z-icon-button
+          class="z_panel_button"
+          squared
+          transparent
+          [icon]="ZIcon.Download"
+          [tooltip]="getTooltip(ZCommand.Download)"
+          (onClick)="downloadEvent.emit()"
+        >
+        </z-icon-button>
+      }
+
+      @if (showPasteButton) {
+        <z-icon-button
+          class="z_panel_button"
+          squared
+          transparent
+          [icon]="ZIcon.Paste"
+          [tooltip]="getTooltip(ZCommand.Paste)"
+          (onClick)="pasteEvent.emit()"
+        >
+        </z-icon-button>
+      }
+
+      @if (showAddButton) {
+        <z-icon-button
+          class="z_panel_button"
+          squared
+          transparent
+          [icon]="ZIcon.Plus"
+          [tooltip]="getTooltip(ZCommand.Add)"
+          (onClick)="addEvent.emit()"
+        >
+        </z-icon-button>
+      }
+    </div>
+  </div>
+</div>
+
+<div class="z_panel_body">
+  @if (isScrollable) {
+    <z-scrollable class="z_panel_scrollable">
+      <div class="z_panel_content">
+        <ng-container *ngTemplateOutlet="template"></ng-container>
+      </div>
+    </z-scrollable>
+  } @else {
+    <div class="zxd_absolute">
+      <ng-container *ngTemplateOutlet="template"></ng-container>
+    </div>
+  }
+</div>
+
+<ng-template #template>
+  <ng-content></ng-content>
+</ng-template>

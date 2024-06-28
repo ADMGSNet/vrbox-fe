@@ -1,0 +1,96 @@
+<div
+  class="z_textarea_container"
+  [hidden]="hidden"
+>
+  @if (showErrors) {
+    <div class="errors">
+      <ng-content select=".errors"></ng-content>
+    </div>
+  }
+
+  <div
+    class="z_textarea_body"
+    [class.disabled]="disabled"
+  >
+    <div
+      class="z_textarea_border"
+      [class.focused]="focused"
+      [class.red]="showErrors"
+    ></div>
+    <div
+      class="z_textarea_placeholder"
+      [style.display]="length ? 'none' : 'block'"
+      [class.marginLeft]="showIcon"
+      [class.disabled]="disabled"
+      [innerHTML]="placeholder | safe"
+    ></div>
+
+    <div
+      #box
+      class="z_textarea_box"
+      [class.paddingRight]="!disabled && showClearButton && length"
+      [style.maxHeight.px]="maxHeight"
+    >
+      @if (showIcon) {
+        <div class="z_textarea_icon">
+          <div class="z_textarea_icon_container">
+            <ng-content></ng-content>
+          </div>
+        </div>
+      }
+
+      <textarea
+        #textarea_element
+        class="z_textarea_input"
+        [attr.tabindex]="isFocusable ? tabIndex : undefined"
+        [style.maxHeight.px]="maxHeight"
+        [hidden]="disabled"
+      ></textarea>
+    </div>
+
+    @if (!disabled && showClearButton && textarea_element.value) {
+      <z-icon-button
+        class="z_textarea_clear_button"
+        transparent
+        stopEventsOnMouseDownOrTouchStart
+        unfocusable
+        [icon]="ZIcon.Cross"
+        [visible]="showClearButton && length > 0 && !disabled"
+        [tooltip]="clearTooltip"
+        (onClick)="doClear(true)"
+      >
+      </z-icon-button>
+    }
+  </div>
+
+  @if (!!label || showNumbers) {
+    <div
+      class="z_textarea_footer"
+      (mousedown)="onFooterMouseDownOrTouchStart($event)"
+      (touchStart)="onFooterMouseDownOrTouchStart($event)"
+    >
+      <div
+        class="z_textarea_label"
+        [innerHTML]="label | safe"
+      ></div>
+
+      @if (showNumbers) {
+        <div
+          class="z_textarea_nums"
+          [style.visibility]="focused && maxLength ? 'visible' : 'hidden'"
+          [class.visible]="showNumbers"
+        >
+          <div class="z_textarea_nums_container">
+            <div class="z_textarea_num">{{ length }}</div>
+            <div class="z_textarea_separator">/</div>
+            <div class="z_textarea_count">{{ maxLength }}</div>
+            <div class="z_textarea_brackets">
+              (<span class="z_textarea_charsLeft">{{ length - +maxLength }}</span
+              >)
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

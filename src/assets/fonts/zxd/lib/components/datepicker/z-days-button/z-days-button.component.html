@@ -1,0 +1,15 @@
+<z-button
+  #b_days
+  class="z_datepicker_window_button {{ position }} z_datepicker_window_button_days"
+  alwaysShowFocusOutline
+  [tabIndex]="index"
+  (onFocus)="openPopup()"
+  (onTab)="closePopup()"
+  (onShiftTab)="closePopup()"
+  (onEnter)="onEnter($event)"
+  (onKeyDown)="onKeyDown($event)"
+  (onKeyUp)="onKeyUp($event)"
+  (onMouseDown)="onMouseDown()"
+>
+  {{ day_string }}
+</z-button>

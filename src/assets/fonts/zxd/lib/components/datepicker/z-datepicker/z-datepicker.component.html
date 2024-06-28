@@ -1,0 +1,87 @@
+<div
+  #container
+  class="z_datepicker_container"
+  [class.disabled]="disabled"
+  [attr.tabindex]="isFocusable ? tabIndex : ''"
+  (focus)="onFocus()"
+  (blur)="onBlur()"
+  (mousedown)="focus()"
+  (touchstart)="focus()"
+  (keydown)="onKeyDown($event)"
+  (keyup)="onKeyUp($event)"
+>
+  @if (showErrors) {
+    <div class="z_datepicker_errors">
+      <ng-content select=".errors"></ng-content>
+    </div>
+  }
+
+  <div class="z_datepicker_body">
+    <div
+      class="z_datepicker_border"
+      [class.focused]="isFocused || isPopupOpened"
+    ></div>
+    <div
+      #placeholder
+      class="z_datepicker_placeholder"
+      [hidden]="!!formattedString"
+      [class.disabled]="disabled"
+    >
+      @if (showTime) {
+        <div [innerHTML]="Label.selectDatetime | safe"></div>
+      } @else {
+        <div [innerHTML]="Label.selectDate | safe"></div>
+      }
+    </div>
+    <div
+      class="z_datepicker_value"
+      [innerHTML]="formattedString | safe"
+    ></div>
+
+    <z-button
+      class="z_datepicker_hidden_button"
+      unfocusable
+      transparent
+      (onBeforeMouseDown)="b_calendar_onBeforeMouseDown()"
+      (onBeforeTouchStart)="b_calendar_onBeforeMouseDown()"
+      (onClick)="b_calendar_onClick()"
+    ></z-button>
+
+    @if (!isEmpty) {
+      <z-icon-button
+        #b_clear
+        class="z_datepicker_clear_button"
+        transparent
+        unfocusable
+        [icon]="ZIcon.Cross"
+        [stopEventsOnMouseDownOrTouchStart]="true"
+        [tooltip]="Label.clear"
+        (onClick)="b_clear_onClick()"
+      >
+      </z-icon-button>
+    }
+
+    <z-icon-button
+      #b_calendar
+      class="z_datepicker_calendar_button"
+      transparent
+      unfocusable
+      [icon]="ZIcon.Calendar"
+      [hidden]="isPopupOpened"
+      [tooltip]="Label.openCalendar"
+      (onBeforeMouseDown)="b_calendar_onBeforeMouseDown()"
+      (onBeforeTouchStart)="b_calendar_onBeforeMouseDown()"
+      (onClick)="b_calendar_onClick()"
+    >
+    </z-icon-button>
+  </div>
+
+  @if (!!label) {
+    <div class="z_datepicker_footer">
+      <div
+        class="z_datepicker_label"
+        [innerHTML]="label | safe"
+      ></div>
+    </div>
+  }
+</div>

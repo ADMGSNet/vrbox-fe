@@ -1,0 +1,25 @@
+$button_width: 40px;
+
+:host {
+  display: block;
+}
+
+.z_drawer_container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.z_drawer_topbar {
+  position: relative;
+  display: flex;
+  flex: 1;
+}
+
+.z_drawer_sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: $button_width;
+  bottom: 0;
+}

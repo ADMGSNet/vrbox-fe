@@ -1,0 +1,35 @@
+<z-dialog #w>
+  <ng-container class="bottom_bar">
+    <div class="space_between">
+      <z-button
+        #b_cancel
+        class="z_selectionbox_button"
+        preventDefaultOnShiftTab
+        (onClick)="b_cancel_onClick()"
+        (onShiftTab)="b_yes.focus()"
+      >
+        <z-icon
+          class="z_selectionbox_cancel_icon"
+          [icon]="ZIcon.Cross"
+          [position]="ZIconPosition.Left"
+        ></z-icon>
+        <span class="z_selectionbox_label">{{ cancelLabel }}</span>
+      </z-button>
+
+      <z-button
+        #b_yes
+        class="z_selectionbox_button"
+        preventDefaultOnTab
+        (onClick)="b_yes_onClick()"
+        (onTab)="b_cancel.focus()"
+      >
+        <z-icon
+          class="z_selectionbox_yes_icon"
+          [icon]="ZIcon.Check"
+          [position]="ZIconPosition.Left"
+        ></z-icon>
+        <span class="z_selectionbox_label">{{ yesLabel }}</span>
+      </z-button>
+    </div>
+  </ng-container>
+</z-dialog>

@@ -1,0 +1,16 @@
+<z-combobox
+  #cb
+  class="combobox"
+  [placeholder]="placeholder"
+  [field]="Field.Name"
+>
+  <ng-template let-item>
+    <div class="z_country_combobox_flag_and_country">
+      <div class="z_country_combobox_flag"><img [src]="toItem(item).flag" /></div>
+      <div
+        class="z_country_combobox_country"
+        [innerHTML]="toItem(item).name"
+      ></div>
+    </div>
+  </ng-template>
+</z-combobox>

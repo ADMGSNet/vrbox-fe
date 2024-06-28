@@ -1,0 +1,29 @@
+.space_between {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.z_selectionbox_button {
+  position: relative;
+
+  .z_selectionbox_cancel_icon {
+    font-size: 12px;
+  }
+
+  .z_selectionbox_yes_icon {
+    font-size: 14px;
+  }
+
+  & ::ng-deep .z_button_container {
+    &.default {
+      .z_selectionbox_cancel_icon {
+        color: brown;
+      }
+
+      .z_selectionbox_yes_icon {
+        color: teal;
+      }
+    }
+  }
+}

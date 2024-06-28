@@ -1,0 +1,38 @@
+<div
+  #container
+  class="z_button_container"
+  [attr.tabindex]="isDisabled ? undefined : tabIndex"
+  [class.disabled]="isDisabled"
+  [class.squared]="squared"
+  [class.circular]="circular"
+>
+  <div
+    #content
+    class="z_button_content"
+  >
+    <div class="z_checkbox_square">
+      <z-icon
+        class="z_checkbox_checkmark"
+        [icon]="ZIcon.Check"
+      ></z-icon>
+    </div>
+
+    <div class="z_checkbox_label">
+      <ng-content></ng-content>
+    </div>
+  </div>
+
+  <div
+    #focus
+    class="z_button_focus zxd_absolute"
+  ></div>
+
+  <div
+    #surface
+    class="z_button_surface zxd_absolute zxd_trasparent"
+  ></div>
+
+  @if (isDisabled) {
+    <div class="zxd_absolute zxd_trasparent"></div>
+  }
+</div>

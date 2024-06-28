@@ -1,0 +1,71 @@
+$color: var(--grey_700);
+$errors_border_color: #c70101;
+$error_color: #dd4b39;
+
+:host {
+  position: relative;
+  color: $color;
+  font-family: inherit;
+  margin-bottom: 10px;
+  display: block;
+
+  .hidden {
+    display: none;
+  }
+}
+
+$marginRight: 30px;
+
+.z_combobox_textbox {
+  & ::ng-deep .z_textbox_container {
+    .z_textbox_placeholder {
+      right: $marginRight;
+    }
+
+    .z_textbox_body.disabled {
+      background-color: transparent;
+    }
+
+    .z_textbox_input {
+      margin-right: $marginRight;
+      max-width: calc(100% - 30px);
+    }
+
+    .z_textbox_clear_button {
+      margin-right: $marginRight;
+    }
+  }
+}
+
+.z_combobox_arrow {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40px;
+  height: 50px;
+
+  .z_combobox_arrow_symbol {
+    font-size: 13px;
+    transition: transform 0.25s ease-out;
+
+    &.rotated {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.z_combobox_errors {
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  top: -10px;
+  right: 0;
+
+  &::ng-deep .message {
+    color: var(--color_error);
+    background-color: var(--color_error_message);
+    font-size: 13px;
+    font-weight: 400;
+    padding: 2px 3px;
+  }
+}

@@ -1,0 +1,91 @@
+$width_default: 300px;
+$margin: 1px;
+$width_min: 8px;
+$width_max: 12px;
+
+:host {
+  position: absolute;
+  z-index: 1;
+  display: none;
+
+  &.vertical {
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: $width_min;
+  }
+
+  &.horizontal {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: $width_min;
+  }
+
+  &.visible {
+    display: block;
+  }
+}
+
+.z_scrollbar_container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  transition: width 200ms, height 200ms, opacity 200ms;
+  opacity: 0;
+
+  &.disabled {
+    background-color: #eeeeee;
+  }
+
+  &.visible {
+    opacity: 1;
+  }
+}
+
+.z_scrollbar_track {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(175, 175, 200, 0);
+  transition: background 200ms;
+}
+
+.z_scrollbar_thumb {
+  position: absolute;
+  background-color: rgba(64, 64, 64, 0.25);
+  border-radius: 12px;
+  transition: width 200ms;
+
+  &.vertical {
+    top: 0;
+    left: $margin;
+    right: $margin;
+    height: 30px;
+  }
+
+  &.horizontal {
+    left: 0;
+    top: $margin;
+    bottom: $margin;
+    width: 30px;
+  }
+}
+
+:host:hover,
+:host.dragging {
+  &.vertical {
+    width: $width_max !important;
+  }
+
+  &.horizontal {
+    height: $width_max !important;
+  }
+
+  .z_scrollbar_track {
+    background-color: rgba(175, 175, 200, 0.1);
+  }
+}

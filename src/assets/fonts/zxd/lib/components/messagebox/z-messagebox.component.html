@@ -1,0 +1,20 @@
+<z-dialog #w>
+  <ng-container class="bottom_bar">
+    <div class="flex_end">
+      <z-button
+        #b_ok
+        class="z_messagebox_button"
+        preventDefaultOnTab
+        preventDefaultOnShiftTab
+        (onClick)="b_close_onClick()"
+      >
+        <z-icon
+          class="z_messagebox_check_icon"
+          [icon]="ZIcon.Check"
+          [position]="ZIconPosition.Left"
+        ></z-icon>
+        <span class="z_messagebox_label">{{ Label.ok }}</span>
+      </z-button>
+    </div>
+  </ng-container>
+</z-dialog>

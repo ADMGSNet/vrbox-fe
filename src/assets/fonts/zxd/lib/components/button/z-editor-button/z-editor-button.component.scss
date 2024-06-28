@@ -1,0 +1,24 @@
+:host {
+  width: 36px;
+  height: 36px;
+
+  .z_button_container {
+    padding: 0;
+
+    & ::ng-deep [class^=zixfont-] {
+      font-size: 24px;
+    }
+
+    &.default {
+      border-color: transparent;
+      background-color: transparent;
+      color: var(--grey_500);
+    }
+
+    &.hover {
+      border-color: transparent;
+      background-color: transparent;
+      color: var(--color_600);
+    }
+  }
+}

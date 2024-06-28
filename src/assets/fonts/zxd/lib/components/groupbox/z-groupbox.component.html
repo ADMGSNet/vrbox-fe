@@ -1,0 +1,16 @@
+<fieldset
+  #fieldset
+  class="z_groupbox_fieldset"
+  [class.focused]="isFocused"
+  [attr.tabIndex]="_tabIndex < 0 ? '' : _tabIndex"
+>
+  @if (!!caption) {
+    <legend
+      class="z_groupbox_legend"
+      [innerHTML]="caption | safe"
+    ></legend>
+  }
+  <div class="z_groupbox_content">
+    <ng-content></ng-content>
+  </div>
+</fieldset>

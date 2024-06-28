@@ -1,0 +1,17 @@
+:host {
+  position: relative;
+  display: block;
+}
+
+.z_edit_date_window_error {
+  position: relative;
+  color: var(--color_error);
+  background-color: var(--color_error_message);
+  font-size: 13px;
+  font-weight: 400;
+  padding: 2px 3px;
+}
+
+.z-datepicker {
+  font-weight: 600;
+}

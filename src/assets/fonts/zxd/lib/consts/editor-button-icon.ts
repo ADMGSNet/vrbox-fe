@@ -1,0 +1,31 @@
+/**
+ * List of available icons for the editor buttons
+ */
+export enum ZEditorButtonIcon {
+  AlignBottom = 'alignBottom',
+  AlignMiddle = 'alignMiddle',
+  AlignTop = 'alignTop',
+  Bold = 'bold',
+  Capitalize = 'capitalize',
+  CreateAnchor = 'anchor',
+  CreateEmailLink = 'mail',
+  CreateLink = 'link',
+  Indent = 'indent',
+  InsertAttachment = 'attachment',
+  InsertImage = 'image',
+  InsertOrderedList = 'orderedList',
+  InsertUnorderedList = 'unorderedList',
+  Italic = 'italic',
+  JustifyCenter = 'alignCenter',
+  JustifyFull = 'justifyFull',
+  JustifyLeft = 'alignLeft',
+  JustifyRight = 'alignRight',
+  Lowercase = 'lowercase',
+  Outdent = 'outdent',
+  Strikethrough = 'strikethrough',
+  Subscript = 'subscript',
+  Superscript = 'superscript',
+  Underline = 'underline',
+  Uppercase = 'uppercase',
+  None = 'none',
+}

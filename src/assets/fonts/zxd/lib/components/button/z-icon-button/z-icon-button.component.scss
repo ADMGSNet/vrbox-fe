@@ -1,0 +1,22 @@
+:host {
+  width: 36px;
+  height: 36px;
+}
+
+.z_button_container {
+  border-color: transparent;
+
+  &.default {
+    background-color: transparent;
+  }
+}
+
+.z_button_icon_icon {
+
+  &.default,
+  &.hover,
+  &.pressed {
+    font-size: inherit;
+    color: inherit;
+  }
+}

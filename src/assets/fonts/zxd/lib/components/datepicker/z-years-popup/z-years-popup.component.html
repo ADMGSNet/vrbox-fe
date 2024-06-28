@@ -1,0 +1,68 @@
+<div
+  #popup
+  class="z_years_popup z_datepicker_button_popup"
+>
+  <div class="z_years_popup_rectangle">
+    <div class="z_years_popup_navigator">
+      <z-icon-button
+        #b_previousDecade
+        class="z_years_popup_previous_decade"
+        unfocusable
+        transparent
+        circular
+        stopEventsOnMouseDownOrTouchStart
+        [icon]="ZIcon.ChevronLeft"
+        [tooltip]="Label.previousDecade"
+        (onClick)="previousDecade()"
+      >
+      </z-icon-button>
+
+      <div class="z_years_popup_decade">{{ decade }}</div>
+
+      <z-icon-button
+        #b_nextDecade
+        class="z_years_popup_next_decade"
+        transparent
+        circular
+        [icon]="ZIcon.ChevronRight"
+        stopEventsOnMouseDownOrTouchStart
+        unfocusable
+        [tooltip]="Label.nextDecade"
+        (onClick)="nextDecade()"
+      >
+      </z-icon-button>
+    </div>
+
+    <div
+      #d_years
+      class="z_years_popup_years"
+    >
+      <div class="z_years_popup_left">
+        @for (y of firstLuster(); track trackYear) {
+          <div
+            class="z_years_popup_year_button"
+            track
+            [class.disabled]="y.disabled"
+            [class.selected]="year === y.year"
+            [attr.data-datetimestring]="y.yyyyMMddHHmm"
+          >
+            {{ y.year }}
+          </div>
+        }
+      </div>
+      <div class="z_years_popup_middle"></div>
+      <div class="z_years_popup_right">
+        @for (y of lastLuster(); track trackYear) {
+          <div
+            class="z_years_popup_year_button"
+            [class.disabled]="y.disabled"
+            [class.selected]="year === y.year"
+            [attr.data-datetimestring]="y.yyyyMMddHHmm"
+          >
+            {{ y.year }}
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

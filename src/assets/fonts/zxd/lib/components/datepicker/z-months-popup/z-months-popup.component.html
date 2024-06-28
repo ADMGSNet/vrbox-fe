@@ -1,0 +1,71 @@
+<div
+  #popup
+  class="z_months_popup z_datepicker_button_popup"
+>
+  <div class="z_months_popup_rectangle">
+    <div class="z_months_popup_navigator">
+      <z-icon-button
+        #b_previousYear
+        class="z_months_popup_previous_year"
+        transparent
+        circular
+        unfocusable
+        stopEventsOnMouseDownOrTouchStart
+        [icon]="ZIcon.ChevronLeft"
+        [tooltip]="Label.previousYear"
+        (onClick)="previousYear()"
+      >
+      </z-icon-button>
+
+      <div class="z_months_popup_year_label">{{ currentYear }}</div>
+
+      <z-icon-button
+        #b_nextYear
+        class="z_months_popup_next_year"
+        transparent
+        circular
+        stopEventsOnMouseDownOrTouchStart
+        unfocusable
+        [icon]="ZIcon.ChevronRight"
+        [tooltip]="Label.nextYear"
+        (onClick)="nextYear()"
+      >
+      </z-icon-button>
+    </div>
+
+    <div
+      #d_months
+      class="z_months_popup_months"
+    >
+      <div class="z_months_popup_left">
+        @for (m of firstSemester; track trackMonth) {
+          <div
+            class="z_months_popup_month_button"
+            [attr.aria-label]="monthName + ' ' + currentYear"
+            [class.disabled]="datetimes[m].disabled"
+            [class.selected]="datetimes[m].selected"
+            [attr.data-datetimestring]="datetimes[m].yyyyMMddHHmm"
+          >
+            {{ datetimes[m].month | number: '2.0-0' }} -
+            {{ datetimes[m].monthName }}
+          </div>
+        }
+      </div>
+      <div class="z_months_popup_middle"></div>
+      <div class="z_months_popup_right">
+        @for (m of lastSemester; track trackMonth) {
+          <div
+            class="z_months_popup_month_button"
+            [attr.aria-label]="monthName + ' ' + currentYear"
+            [class.disabled]="datetimes[m].disabled"
+            [class.selected]="datetimes[m].selected"
+            [attr.data-datetimestring]="datetimes[m].yyyyMMddHHmm"
+          >
+            {{ datetimes[m].month | number: '2.0-0' }} -
+            {{ datetimes[m].monthName }}
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

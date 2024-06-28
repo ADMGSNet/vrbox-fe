@@ -1,0 +1,214 @@
+<div
+  #container
+  class="z_datagrid_container"
+  tabindex="0"
+  [class.focused]="isFocused"
+>
+  <div
+    #grid
+    class="z_datagrid_grid"
+    [class.overflow_auto]="!showScrollbars"
+    [class.overflow_hidden]="showScrollbars"
+  >
+    @if (showScrollbars) {
+      <z-scrollable
+        #scrollable
+        class="z_datagrid_scrollable"
+        [marginTop]="scrollbarMarginTop"
+      >
+        <ng-container *ngTemplateOutlet="template"></ng-container>
+      </z-scrollable>
+    } @else {
+      <div>
+        <ng-container *ngTemplateOutlet="template"></ng-container>
+      </div>
+    }
+  </div>
+  <div class="z_datagrid_border_left"></div>
+  <div class="z_datagrid_border_right"></div>
+
+  @if (showStatusBar) {
+    <z-pagination-statusbar
+      class="z_datagrid_status_bar"
+      [backgroundColor]="backgroundColor"
+      [numPages]="numPages"
+      [numItems]="numItems"
+      [numFilteredItems]="numFilteredItems"
+      [numSelectedItems]="numSelectedItems"
+      [label_numFilteredItems]="Label.numFilteredItems"
+      [label_numItems]="Label.numItems"
+      [label_numSelectedItems]="Label.numSelectedItems"
+      [page]="page"
+      [showSelectedItems]="allowMultipleSelections"
+      (onSetPage)="onSetPage($event)"
+    >
+    </z-pagination-statusbar>
+  }
+</div>
+
+<ng-template #template>
+  @if (showHeader) {
+    <div
+      #header
+      class="z_datagrid_header"
+      [style.backgroundColor]="backgroundColor"
+    >
+      @if (allowDragAndDrop || allowSorting) {
+        <div
+          class="z_datagrid_header_cell z_datagrid_header_handle"
+          [style.backgroundColor]="backgroundColor"
+        ></div>
+      }
+      @if (allowMultipleSelections) {
+        <div
+          class="z_datagrid_header_cell z_datagrid_header_checkbox"
+          [style.backgroundColor]="backgroundColor"
+        >
+          <z-checkbox
+            unfocusable
+            [checked]="allEnabledItemsAreSelected"
+            [disabled]="!numItems"
+            (onClick)="selectOrUnselectAllItems(); focus()"
+          ></z-checkbox>
+        </div>
+      }
+
+      @for (column of columns; track column.fieldName) {
+        <div
+          class="z_datagrid_header_cell z_datagrid_align_{{ column.alignment }}"
+          [style.display]="column.isVisible ? '' : 'none'"
+          [ngClass]="column.fieldName"
+          [style.backgroundColor]="backgroundColor"
+          [attr.data-name]="column.fieldName"
+          [attr.data-sort-field]="column.sortField"
+          [style.flex]="column.unit === ZColumnWidthUnit.Flexible ? column.width : undefined"
+          [style.width]="column.unit === ZColumnWidthUnit.Fixed ? column.width + 'px' : undefined"
+          [style.min-width]="column.minWidth ? column.minWidth + 'px' : undefined"
+          [style.max-width]="column.maxWidth ? column.maxWidth + 'px' : undefined"
+          [attr.data-tooltip]="column.tooltip"
+        >
+          @if (!column.isFilterable && column.title) {
+            <div
+              class="z_datagrid_header_title"
+              [innerHTML]="column.title | safe"
+            ></div>
+          }
+          @if (column.isFilterable) {
+            <z-textbox
+              #tb_filter
+              class="z_datagrid_header_filter"
+              hideButtons
+              hideNumbers
+              preventDefaultUpAndDownArrowEvents
+              maxLength="100"
+              placeholder=" &#10039; "
+              [label]="column.title || ''"
+              (onArrowUp)="doArrowUp($event)"
+              (onArrowDown)="doArrowDown($event)"
+              (onChange)="handleFilterChange(column.fieldName, tb_filter.text, ZFilterOperator.Like, true)"
+              (onEnter)="enterEvent.emit(selectedItemIds)"
+            >
+            </z-textbox>
+          }
+          @if (!!column.sortField) {
+            <z-button
+              class="z_datagrid_sort_button"
+              transparent
+              [class.sorted]="isSorted(column.fieldName)"
+              [class.descending]="isSortedDescending(column.fieldName)"
+              (onClick)="sortByField($event, column.fieldName)"
+            >
+              <z-icon
+                class="z_datagrid_sort_button_icon"
+                [icon]="getSortIconName(column.fieldName)"
+              ></z-icon>
+            </z-button>
+          }
+        </div>
+      }
+    </div>
+  } @else {
+    <div
+      #header
+      class="z_datagrid_top_border"
+    ></div>
+  }
+
+  <div class="z_datagrid_items">
+    @for (item of visibleItems; track item.id; let r = $index) {
+      <div
+        class="z_datagrid_item"
+        [class.z_datagrid_item_disabled]="item.isDisabled"
+        [class.odd]="!(r % 2)"
+        [class.even]="!!(r % 2)"
+        [attr.data-index]="r"
+        [attr.data-id]="item.id"
+      >
+        @if (allowDragAndDrop || allowSorting) {
+          <div class="z_datagrid_handle">
+            @if ((allowDragAndDrop || (allowSorting && numSelectedItems === 1)) && !item.isDisabled) {
+              @if (selectedItemIds.includes(item.id)) {
+                <div class="z_datagrid_dots">
+                  <div class="z_datagrid_dots_left">
+                    <div class="z_datagrid_dot"></div>
+                    <div class="z_datagrid_dot"></div>
+                    <div class="z_datagrid_dot"></div>
+                  </div>
+                  <div class="z_datagrid_dots_right">
+                    <div class="z_datagrid_dot"></div>
+                    <div class="z_datagrid_dot"></div>
+                    <div class="z_datagrid_dot"></div>
+                  </div>
+                </div>
+              }
+
+              <div class="z_datagrid_drag"></div>
+            }
+          </div>
+        }
+        @if (allowMultipleSelections) {
+          <div class="z_datagrid_checkbox">
+            @if (!item.isDisabled) {
+              <div class="z_datagrid_checkbox_square">
+                <z-icon
+                  class="z_datagrid_checkbox_checkmark"
+                  [icon]="ZIcon.Check"
+                ></z-icon>
+              </div>
+            }
+          </div>
+        }
+
+        @for (column of columns; track $index) {
+          <div
+            class="z_datagrid_cell z_datagrid_align_{{ column.alignment }}"
+            [style.display]="column.isVisible ? '' : 'none'"
+            [ngClass]="column.fieldName"
+            [attr.data-index]="$index"
+            [attr.data-name]="column.fieldName"
+            [attr.data-sort-field]="column.sortField"
+            [style.flex]="column.unit === ZColumnWidthUnit.Flexible ? column.width : undefined"
+            [style.width]="column.unit === ZColumnWidthUnit.Fixed ? column.width + 'px' : undefined"
+            [style.min-width]="column.minWidth ? column.minWidth + 'px' : undefined"
+            [style.max-width]="column.maxWidth ? column.maxWidth + 'px' : undefined"
+          >
+            <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: item, col: column }"></ng-container>
+          </div>
+        }
+
+        @if (allowSorting && numSelectedItems === 1 && isDragging && draggingPosition > 0 && r === 0) {
+          <div class="z_datagrid_target z_datagrid_target_before x_datagrid_target_{{ id }}"></div>
+        }
+
+        @if (
+          allowSorting && numSelectedItems === 1 && isDragging && draggingPosition !== r && draggingPosition !== r + 1
+        ) {
+          <div
+            class="z_datagrid_target z_datagrid_target_after x_datagrid_target_{{ id }}"
+            [attr.data-target-id]="item.id"
+          ></div>
+        }
+      </div>
+    }
+  </div>
+</ng-template>

@@ -1,0 +1,106 @@
+.z_hours_popup {
+  position: fixed;
+  width: 285px;
+  background-color: #fff;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+  border-radius: 10px;
+  display: none;
+  z-index: 1001;
+
+  &.visible {
+    display: block;
+  }
+}
+
+.z_hours_popup_rectangle {
+  position: relative;
+  overflow: hidden;
+}
+
+.z_hours_popup_hours {
+  position: relative;
+  width: 290px;
+  height: 150px;
+  display: flex;
+}
+
+.z_hours_popup_hour_button {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  color: #666;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    border: solid 1px #ccc;
+  }
+
+  &.selected {
+    border-color: var(--color_600);
+    background-color: var(--color_600);
+    color: var(--text_color_600);
+    font-weight: 700;
+  }
+
+  &:active {
+    border-color: var(--color_700);
+    background-color: var(--color_700);
+    color: var(--text_color_700);
+    color: #fff;
+  }
+
+  &.disabled {
+    color: #aaa;
+    cursor: default;
+  }
+}
+
+.z_hours_popup_vertical_line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  border-left: solid 1px #ddd;
+  border-right: solid 1px #fff;
+  width: 0px;
+}
+
+.z_hours_popup_left,
+.z_hours_popup_right {
+  position: relative;
+  width: 50%;
+}
+
+.z_hours_popup_horizontal_line {
+  position: relative;
+  margin: 5px;
+  border-top: solid 1px #ddd;
+  border-bottom: solid 1px #fff;
+  height: 0px;
+}
+
+.z_hours_popup_labels {
+  position: relative;
+  display: flex;
+  height: 20px;
+}
+
+.z_hours_popup_am,
+.z_hours_popup_pm {
+  position: relative;
+  font-size: 14px;
+  width: 50%;
+  width: 50%;
+  text-align: center;
+  color: #888;
+  text-shadow: 0 1px 1px #fff;
+}

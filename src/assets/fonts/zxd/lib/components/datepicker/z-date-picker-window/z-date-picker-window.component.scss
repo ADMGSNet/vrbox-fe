@@ -1,0 +1,171 @@
+@use "sass:math";
+$days_popup_height: 250px;
+$border_radius: 8px;
+
+.z_datepicker_window {
+  position: absolute;
+  background-color: #fff;
+  border: solid 1px #eee;
+  box-shadow: 1px 0px 2px 0 rgb(0 0 0 / 22%), inset 0 -1px 0 0 #dadce0;
+  border-bottom-left-radius: $border_radius;
+  border-bottom-right-radius: $border_radius;
+  display: none;
+
+  &.opened {
+    display: block;
+  }
+}
+
+.z_datepicker_window_shortcuts {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin: 6px;
+
+  .z_datepicker_window_button {
+    margin-right: 10px;
+
+    .symbol {
+      width: 16px;
+      margin-right: 10px;
+    }
+
+    & ::ng-deep .z_button_container {
+      border: none;
+      background-color: transparent !important;
+      color: #666;
+
+      &.over {
+        color: #23619e;
+      }
+
+      &.down {
+        background-color: #23619e !important;
+        border-color: #23619e !important;
+        color: #fff;
+      }
+    }
+  }
+
+  &.reverse {
+    .button {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.z_datepicker_window_selection_buttons {
+  position: relative;
+  justify-content: space-between;
+  margin: 20px 6px 6px;
+  display: flex;
+}
+
+.z_datepicker_window_selection_button {
+  position: relative;
+  display: none;
+
+  &.visible {
+    display: block;
+  }
+
+  .z_datepicker_window_selection_cancel_icon {
+    font-size: 12px;
+  }
+
+  .z_datepicker_window_selection_yes_icon {
+    font-size: 14px;
+  }
+
+  & ::ng-deep .z_button_container {
+    &.default {
+      .z_datepicker_window_selection_cancel_icon {
+        color: brown;
+      }
+
+      .z_datepicker_window_selection_yes_icon {
+        color: teal;
+      }
+    }
+  }
+}
+
+.z_datepicker_window_flex {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 0 5px 5px 5px;
+}
+
+.z_datepicker_window_buttons {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.z_datepicker_window_button {
+  margin-right: -1px;
+}
+
+.z_datepicker_window_date {
+  position: relative;
+}
+
+.z_datepicker_window_time {
+  position: relative;
+  margin-left: 20px;
+}
+
+.z_datepicker_window_colon {
+  position: absolute;
+  top: 1px;
+  left: 29px;
+  font-weight: 700;
+  width: 6px;
+  background-color: #fff;
+  color: #666;
+  bottom: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.z_datepicker_window_am_pm {
+  position: absolute;
+  right: -23px;
+  top: 12px;
+  font-size: 12px;
+}
+
+$width: 16px;
+
+.z_datepicker_window_clear_button {
+  position: absolute;
+  top: math.div(-$width, 2);
+  right: math.div(-$width, 2);
+  width: $width;
+  height: $width;
+  z-index: 2;
+  font-size: 16px;
+
+  &.reverse {
+    top: auto;
+    bottom: math.div(-$width, 2);
+  }
+
+  & ::ng-deep .z_button_container {
+    padding: 0;
+  }
+}
+
+.z_datepicker_window_today_button {
+  & ::ng-deep .z_button_container {
+    padding-left: 2px;
+
+    .z_button_content {
+      justify-content: flex-start;
+    }
+  }
+}

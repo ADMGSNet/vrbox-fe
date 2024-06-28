@@ -1,0 +1,37 @@
+<div
+  #overlay
+  class="z_dialog_overlay"
+  [class.dragging]="isDragging"
+></div>
+<div
+  #w
+  class="z_dialog_window"
+  [style.max-width]="maxWidth"
+>
+  <div
+    #titleBar
+    class="z_dialog_titlebar"
+  >
+    <div
+      #d_title
+      class="z_dialog_caption"
+    ></div>
+    <div
+      #draggable
+      class="z_dialog_draggable"
+    ></div>
+  </div>
+
+  <div class="z_dialog_rectangle">
+    <div class="z_dialog_container">
+      <div
+        #d_message
+        class="z_dialog_content"
+      ></div>
+      <div class="z_dialog_line"></div>
+      <div class="z_dialog_buttons">
+        <ng-content select=".bottom_bar"></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

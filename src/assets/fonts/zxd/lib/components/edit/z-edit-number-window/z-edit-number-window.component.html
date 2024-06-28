@@ -1,0 +1,60 @@
+<z-window
+  #w
+  class="z_edit_number_window"
+  [width]="width"
+  [caption]="caption"
+  [hideConfirmButton]="formControl.invalid || (required && !tb.text)"
+  (onConfirm)="onEnter()"
+  (onClose)="closeEvent.emit()"
+>
+  <form
+    [formGroup]="form"
+    class="form"
+  >
+    <div class="z_edit_number_flex">
+      @if (prefix) {
+        <div
+          class="z_edit_number_prefix"
+          [innerHTML]="prefix | safe"
+        ></div>
+      }
+
+      <z-numeric-textbox
+        #tb
+        class="z_edit_number_textbox"
+        allowIncDec_01
+        allowIncDec_10
+        [label]="label"
+        [numberType]="numberType"
+        [min]="min"
+        [max]="max"
+        [prefix]="prefix"
+        [suffix]="tb?.value === 1 ? suffix_singular : suffix_plural"
+        [formControlName]="Field.Number"
+        [autocomplete]="autocomplete"
+        [maxLength]="maxLength"
+        [spellcheck]="spellcheck"
+        [locale]="locale"
+        [showErrors]="formControl.touched && formControl.invalid"
+        [style.max-width]="textboxMaxWidth ? textboxMaxWidth + 'px' : undefined"
+        (onChangeValue)="tb_onChangeValue(tb.value)"
+        (onClear)="refresh()"
+        (onEscape)="w.close()"
+        (onEnter)="onEnter()"
+        (onInput)="refresh()"
+      >
+        <ng-container class="errors">
+          @if (formControl.touched && formControl.invalid) {
+            @if (formControl.hasError(ZError.Required)) {
+              <div class="error">
+                <div class="message">
+                  {{ Label.fieldIsMandatory }}
+                </div>
+              </div>
+            }
+          }
+        </ng-container>
+      </z-numeric-textbox>
+    </div>
+  </form>
+</z-window>

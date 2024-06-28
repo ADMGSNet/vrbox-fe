@@ -1,0 +1,46 @@
+<div
+  #popup
+  class="z_hours_popup z_datepicker_button_popup"
+>
+  <div class="z_hours_popup_rectangle">
+    <div
+      #d_hours
+      class="z_hours_popup_hours"
+    >
+      <div class="z_hours_popup_vertical_line"></div>
+      <div class="z_hours_popup_left">
+        @for (h of am_hours(); track trackHour) {
+          <div
+            class="z_hours_popup_hour_button"
+            [style.top]="h.top"
+            [style.left]="h.left"
+            [class.disabled]="h.disabled"
+            [class.selected]="h.selected"
+            [attr.data-datetimestring]="h.dateTimeString"
+          >
+            {{ h.label }}
+          </div>
+        }
+      </div>
+      <div class="z_hours_popup_right">
+        @for (h of pm_hours(); track trackHour) {
+          <div
+            class="z_hours_popup_hour_button"
+            [style.top]="h.top"
+            [style.left]="h.left"
+            [class.disabled]="h.disabled"
+            [class.selected]="h.selected"
+            [attr.data-datetimestring]="h.dateTimeString"
+          >
+            {{ h.label }}
+          </div>
+        }
+      </div>
+    </div>
+    <div class="z_hours_popup_horizontal_line"></div>
+    <div class="z_hours_popup_labels">
+      <div class="z_hours_popup_am">AM</div>
+      <div class="z_hours_popup_pm">PM</div>
+    </div>
+  </div>
+</div>

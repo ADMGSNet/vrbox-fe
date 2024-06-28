@@ -1,0 +1,171 @@
+:host {
+  position: relative;
+  width: fit-content;
+  height: 36px;
+  border-radius: 4px;
+}
+
+.z_button_container {
+  position: relative;
+  width: inherit;
+  min-width: inherit;
+  height: inherit;
+  min-height: inherit;
+  border: solid 1px transparent;
+  border-radius: inherit;
+  padding: 12px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 500;
+  font-size: inherit;
+  overflow: hidden;
+  outline: solid 1px transparent;
+}
+
+.z_button_content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.default {
+  background-color: var(--color_500);
+  border-color: var(--color_500);
+  color: white;
+
+  & ::ng-deep svg {
+    fill: var(--grey_500);
+  }
+
+  &.z_button_transparent {
+    background-color: transparent;
+    border-color: transparent;
+  }
+}
+
+.hover {
+  background-color: var(--color_600);
+  border-color: var(--color_600);
+  color: white;
+
+  & ::ng-deep svg {
+    fill: white;
+  }
+
+  &.z_button_transparent {
+    background-color: transparent;
+    border-color: transparent;
+  }
+}
+
+.pressed {
+  background-color: var(--color_800);
+  border-color: var(--color_800);
+  color: white;
+
+  & ::ng-deep svg {
+    fill: #fff;
+  }
+
+  &.z_button_transparent {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--color_800);
+
+    & ::ng-deep svg {
+      fill: var(--color_800);
+    }
+  }
+}
+
+.selected {
+  background-color: var(--color_700);
+  border-color: var(--color_700);
+  color: white;
+
+  & ::ng-deep svg {
+    fill: #fff;
+  }
+
+  &.z_button_transparent {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--color_800);
+
+    & ::ng-deep svg {
+      fill: var(--color_800);
+    }
+  }
+}
+
+.disabled {
+  background-color: var(--grey_600);
+  border-color: var(--grey_600);
+  color: var(--grey_250);
+  font-weight: 300;
+  font-style: italic;
+
+  & ::ng-deep svg {
+    fill: var(--grey_250);
+  }
+
+  &.zxd_transparent {
+    background-color: transparent;
+    border-color: transparent;
+  }
+}
+
+.disabled.selected {
+  background-color: var(--grey_100);
+  border-color: var(--grey_200);
+  color: var(--grey_300);
+  font-weight: 400;
+  font-style: italic;
+
+  & ::ng-deep svg {
+    fill: var(--grey_300);
+  }
+
+  &.z_button_transparent {
+    background-color: transparent;
+    border-color: transparent;
+  }
+}
+
+.z_button_focus {
+  border: solid 3px var(--color_400);
+  border-radius: inherit;
+  display: none;
+  pointer-events: none;
+
+  &.z_button_visible {
+    display: block;
+  }
+}
+
+.z_button_content {
+  user-select: none;
+
+  &::ng-deep .icon-left {
+    margin-right: 5px;
+  }
+
+  &::ng-deep .icon-right {
+    margin-left: 5px;
+  }
+}
+
+.squared {
+  border-radius: 0;
+}
+
+.circular {
+  border-radius: 50%;
+}
+
+.z_button_pointer {
+  cursor: pointer;
+}

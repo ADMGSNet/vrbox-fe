@@ -1,0 +1,25 @@
+$color: var(--grey_700);
+$errors_border_color: #c70101;
+$error_color: #dd4b39;
+
+:host {
+  position: relative;
+  color: $color;
+  font-family: inherit;
+  display: flex;
+
+  .hidden {
+    display: none;
+  }
+}
+
+$marginRight: 30px;
+
+.z_popup_button_arrow_symbol {
+  font-size: 13px;
+  transition: transform 0.25s ease-out;
+
+  &.rotated {
+    transform: rotate(180deg);
+  }
+}

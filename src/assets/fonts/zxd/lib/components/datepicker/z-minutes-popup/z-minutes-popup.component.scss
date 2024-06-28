@@ -1,0 +1,73 @@
+.z_minutes_popup {
+  position: fixed;
+  width: 270px;
+  background-color: #fff;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+  border-radius: 10px;
+  display: none;
+  z-index: 1001;
+
+  &.visible {
+    display: block;
+  }
+}
+
+.z_minutes_popup_minutes {
+  position: relative;
+  width: 270px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.z_minutes_popup_minute_button {
+  position: relative;
+  width: 27px;
+  height: 27px;
+  font-size: 14px;
+  color: #666;
+  border: solid 1px transparent;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    border: solid 1px #ccc;
+  }
+
+  &.selected {
+    border-color: var(--color_600);
+    background-color: var(--color_600);
+    color: var(--text_color_600);
+    font-weight: 700;
+  }
+
+  &:active {
+    border-color: var(--color_700);
+    background-color: var(--color_700);
+    color: var(--text_color_700);
+    color: #fff;
+  }
+
+  &.disabled {
+    color: #aaa;
+    cursor: default;
+  }
+
+  &:nth-of-type(1) {
+    border-top-left-radius: 10px;
+  }
+
+  &:nth-of-type(10) {
+    border-top-right-radius: 10px;
+  }
+
+  &:nth-of-type(51) {
+    border-bottom-left-radius: 10px;
+  }
+
+  &:nth-of-type(60) {
+    border-bottom-right-radius: 10px;
+  }
+}

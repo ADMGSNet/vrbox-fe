@@ -1,0 +1,57 @@
+<div
+  #container
+  class="z_popup_menu_container"
+  tabindex="0"
+  [style.display]="ds && ds.numFilteredItems > 0 ? 'block' : 'none'"
+>
+  <div
+    #popup
+    class="z_popup_menu_popup"
+  >
+    <div
+      #grid
+      class="z_popup_menu_grid"
+      [class.overflow_auto]="!showScrollBars"
+    >
+      <div class="z_popup_menu_grid_container">
+        <div class="z_popup_menu_items">
+          @for (item of popupButton.orderedItems; track item.id) {
+            <div
+              class="z_popup_menu_item"
+              [class.z_popup_menu_item_disabled]="item.isDisabled"
+              [attr.data-id]="item.id"
+            >
+              @for (column of popupButton.columns; track column.fieldName) {
+                <div
+                  class="z_popup_menu_cell z_popup_menu_align_{{ column.alignment }}"
+                  [style.display]="column.isVisible ? '' : 'none'"
+                  [ngClass]="column.fieldName"
+                  [attr.data-name]="column.fieldName"
+                  [attr.data-sort-field]="column.sortField"
+                  [style.flex]="column.unit === ZColumnWidthUnit.Flexible ? column.width : undefined"
+                  [style.width]="column.unit === ZColumnWidthUnit.Fixed ? column.width + column.unit : undefined"
+                  [style.min-width]="column.minWidth ? column.minWidth + ZColumnWidthUnit.Fixed : undefined"
+                  [style.max-width]="column.maxWidth ? column.maxWidth + ZColumnWidthUnit.Fixed : undefined"
+                >
+                  <ng-container
+                    *ngTemplateOutlet="itemTemplate; context: { $implicit: item, col: column }"
+                  ></ng-container>
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    @if (showScrollBars) {
+      <z-scrollbar
+        #scrollbar
+        class="z_popup_menu_scrollbar"
+        [type]="ZScrollBarType.Vertical"
+        [target]="grid"
+      >
+      </z-scrollbar>
+    }
+  </div>
+</div>

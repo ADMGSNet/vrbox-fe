@@ -1,0 +1,66 @@
+<ng-content></ng-content>
+
+@if (showMessageBox) {
+  <z-messagebox
+    #mb
+    (onClose)="mb_onClose()"
+  ></z-messagebox>
+}
+
+@if (showSelectionBox) {
+  <z-selectionbox
+    #sb
+    (onClose)="sb_onClose()"
+  ></z-selectionbox>
+}
+
+@if (showEditBooleanWindow) {
+  <z-edit-boolean-window
+    #editBooleanWindow
+    (onClose)="editBooleanWindow_onClose()"
+  ></z-edit-boolean-window>
+}
+
+@if (showEditTextWindow) {
+  <z-edit-text-window
+    #editTextWindow
+    (onClose)="editTextWindow_onClose()"
+  ></z-edit-text-window>
+}
+
+@if (showEditFiscalCodeWindow) {
+  <z-edit-fiscal-code-window
+    #editFiscalCodeWindow
+    (onClose)="editFiscalCodeWindow_onClose()"
+  ></z-edit-fiscal-code-window>
+}
+
+@if (showEditNumberWindow) {
+  <z-edit-number-window
+    #editNumberWindow
+    (onClose)="editNumberWindow_onClose()"
+  ></z-edit-number-window>
+}
+
+@if (showEditDateWindow) {
+  <z-edit-date-window
+    #editDateWindow
+    (onClose)="editDateWindow_onClose()"
+  ></z-edit-date-window>
+}
+
+@if (showPhotogallery) {
+  <z-photo-gallery
+    #photogallery
+    (onClose)="photogallery_onClose()"
+  ></z-photo-gallery>
+}
+
+<div
+  #popups
+  class="z_root_popups"
+></div>
+
+<z-loading-overlay #loadingOverlay></z-loading-overlay>
+
+<z-tooltip></z-tooltip>

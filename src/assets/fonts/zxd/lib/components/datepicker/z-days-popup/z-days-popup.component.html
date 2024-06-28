@@ -1,0 +1,74 @@
+<div
+  #popup
+  class="z_days_popup z_datepicker_button_popup"
+>
+  <div class="z_days_popup_rectangle">
+    <div class="z_days_popup_navigator">
+      <z-icon-button
+        #b_previousMonth
+        class="z_days_popup_previous_month"
+        transparent
+        circular
+        stopEventsOnMouseDownOrTouchStart
+        unfocusable
+        [tooltip]="Label.previousMonth"
+        [icon]="ZIcon.ChevronLeft"
+        (onClick)="previousMonth()"
+      >
+      </z-icon-button>
+
+      <div class="z_days_popup_year_month_label">
+        {{ yearMonthDate }}
+      </div>
+
+      <z-icon-button
+        #b_nextMonth
+        class="z_days_popup_next_month"
+        transparent
+        circular
+        stopEventsOnMouseDownOrTouchStart
+        unfocusable
+        [tooltip]="Label.nextMonth"
+        [icon]="ZIcon.ChevronRight"
+        (onClick)="nextMonth()"
+      >
+      </z-icon-button>
+    </div>
+
+    <div class="z_days_popup_weekdays">
+      @for (d of weekdays(); track $index) {
+        <div
+          class="z_days_popup_weekday"
+          [attr.data-weekday]="d.weekday"
+          [class.z_days_popup_weekend]="d.weekday > 5"
+        >
+          {{ d.label }}
+        </div>
+      }
+    </div>
+
+    <div
+      #d_weeks
+      class="z_days_popup_weeks"
+    >
+      @for (week of weeks(); track $index) {
+        <div class="z_days_popup_week">
+          @for (d of week; track trackDay) {
+            <div
+              class="z_days_popup_day_button"
+              [class.disabled]="d.disabled"
+              [class.selected]="d.selected"
+              [class.weekend]="d.weekend"
+              [class.outside]="d.outside"
+              [class.today]="d.today"
+              [attr.data-weekday]="d.weekday"
+              [attr.data-datetimestring]="d.dateTimeString"
+            >
+              {{ d.day }}
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>

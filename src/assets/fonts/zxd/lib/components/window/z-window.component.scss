@@ -1,0 +1,231 @@
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 101;
+  pointer-events: none;
+  display: block;
+}
+
+.z_window_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #000;
+  opacity: 0.25;
+  display: block;
+  pointer-events: all;
+
+  &.dragging {
+    opacity: 0.2;
+  }
+}
+
+.z_window_box {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100% - 10px);
+  max-width: calc(100% - 10px);
+  min-width: 310px;
+  outline: solid 1px transparent;
+  pointer-events: all;
+
+  &.not_modal {
+    box-shadow: 0 0 5px 2px var(--grey_200);
+  }
+
+  &.with_titleBar {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  &.moved {
+    position: absolute;
+    transform: none;
+  }
+}
+
+.z_window_title_bar {
+  position: relative;
+  font-size: 16px;
+  min-height: 36px;
+  line-height: 1;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  z-index: 102;
+  border-bottom: solid 1px var(--grey_200);
+  overflow: hidden;
+  display: flex;
+  background-color: #fff;
+  box-shadow: 0 2px 1px var(--grey_150);
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.z_window_caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  overflow: hidden;
+  text-align: center;
+  font-weight: 600;
+  pointer-events: none;
+  user-select: none;
+}
+
+.z_window_rectangle {
+  position: relative;
+  flex: 1;
+  color: var(--grey_650);
+  background-color: #fff;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.z_window_container {
+  position: relative;
+  padding: 10px;
+  background-color: #fefefe;
+}
+
+.z_window_sticky_top {
+  position: sticky;
+  top: 0;
+  margin: 0;
+  height: 10px;
+  background-color: white;
+  z-index: 1;
+  margin-bottom: -10px;
+}
+
+.z_window_border_bottom {
+  position: absolute;
+  bottom: 0px;
+  left: 1px;
+  right: 1px;
+  height: 10px;
+  background-color: white;
+  z-index: 1;
+}
+
+.z_window_last {
+  position: absolute;
+  top: 0;
+}
+
+.z_window_scrollbar {
+  top: 40px !important;
+}
+
+.z_window_box.absolute {
+  position: absolute;
+  transform: none;
+  display: flex;
+  flex-direction: column;
+
+  .z_window_container {
+    overflow: hidden;
+  }
+
+  .z_window_rectangle {
+    flex: 1;
+  }
+}
+
+.z_window_cancel_button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 36px;
+  border-radius: 0;
+  border-top-left-radius: 8px;
+
+  & ::ng-deep .z_button_container {
+    border: none;
+    border-radius: 0;
+    border-top-left-radius: 8px;
+
+    &.default {
+      color: #d8421f;
+    }
+
+    &.hover {
+      color: #d8421f;
+      background-color: antiquewhite;
+    }
+
+    &.pressed {
+      color: #d8421f;
+      background-color: bisque;
+    }
+  }
+}
+
+.z_window_cancel_icon {
+  font-size: 12px;
+}
+
+.z_window_cancel_label {
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.z_window_confirm_button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 36px;
+  border-radius: 0;
+  border-top-right-radius: 8px;
+  display: none;
+
+  &.visible {
+    display: block;
+  }
+
+  & ::ng-deep .z_button_container {
+    border: none;
+    border-radius: 0;
+    border-top-right-radius: 8px;
+
+    &.default {
+      color: #00b266;
+    }
+
+    &.hover {
+      color: #00b266;
+      background-color: #deffde;
+    }
+
+    &.pressed {
+      color: #00b266;
+      background-color: palegreen;
+    }
+  }
+}
+
+.z_window_confirm_icon {
+  font-size: 14px;
+}
+
+.z_window_confirm_label {
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 700;
+}

@@ -1,0 +1,63 @@
+$bg_color: var(--color_900);
+
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: block;
+  z-index: 10001;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-size: 14px;
+
+  &.z_tooltip_visible {
+    opacity: 1;
+
+    .z_tooltip_container.hoverable {
+      pointer-events: all;
+    }
+  }
+}
+
+.z_tooltip_container {
+  position: absolute;
+  width: auto;
+  border-radius: 10px;
+  background-color: $bg_color;
+  box-shadow: 0 1px 1px 0 #3c40432e, 0 1px 3px 1px #3c404342;
+  transition: all 100ms linear;
+  padding: 10px;
+  color: var(--color_100);
+  text-align: center;
+  pointer-events: none;
+}
+
+.z_tooltip_message {
+  position: relative;
+}
+
+.z_tooltip_hidden {
+  position: fixed;
+  top: 0px;
+  left: 0;
+  display: block;
+  visibility: hidden;
+}
+
+.z_tooltip_arrow {
+  position: absolute;
+  // transform: translateX(-50%);
+  // transform-origin: 0 0;
+  width: 12px;
+  height: 16px;
+
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 12px;
+    fill: $bg_color;
+  }
+}

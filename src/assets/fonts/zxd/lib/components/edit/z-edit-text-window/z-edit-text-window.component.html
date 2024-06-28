@@ -1,0 +1,148 @@
+<z-window
+  #w
+  class="z_edit_text_window"
+  [width]="width"
+  [caption]="caption"
+  hideStickies
+  [hideConfirmButton]="formControl.invalid || (required && !formControl.value)"
+  (onConfirm)="onEnter()"
+  (onClose)="closeEvent.emit()"
+>
+  <form
+    [formGroup]="form"
+    class="form"
+  >
+    @switch (type) {
+      @case (ZEditTextWindowType.Text) {
+        <z-textbox
+          #tb
+          class="z_edit_text_textbox"
+          [label]="label"
+          [locale]="locale"
+          [maxLength]="maxLength"
+          [formControlName]="Field.Text"
+          [autocomplete]="autocomplete"
+          [maxLength]="maxLength"
+          [showNumbers]="showNumbers"
+          [spellcheck]="spellcheck"
+          [textTransform]="textTransform"
+          [showErrors]="formControl.touched && formControl.invalid"
+          (onChange)="text_onChange(tb.text)"
+          (onEscape)="w.close()"
+          (onEnter)="onEnter()"
+        >
+          <ng-container class="errors">
+            @if (formControl.touched && formControl.invalid) {
+              @if (formControl.hasError(ZError.Required)) {
+                <div class="error">
+                  <div class="message">
+                    {{ Label.fieldIsMandatory }}
+                  </div>
+                </div>
+              }
+            }
+          </ng-container>
+        </z-textbox>
+      }
+      @case (ZEditTextWindowType.Email) {
+        <z-email-textbox
+          #tb
+          class="z_edit_text_textbox"
+          [label]="label"
+          [locale]="locale"
+          [maxLength]="maxLength"
+          [formControlName]="Field.Text"
+          [autocomplete]="autocomplete"
+          [maxLength]="maxLength"
+          [showNumbers]="showNumbers"
+          [spellcheck]="spellcheck"
+          [showErrors]="formControl.touched && formControl.invalid"
+          (onChange)="text_onChange(tb.text)"
+          (onEscape)="w.close()"
+          (onEnter)="onEnter()"
+        >
+          <ng-container class="errors">
+            @if (formControl.touched && formControl.invalid) {
+              @if (formControl.hasError(ZError.Required)) {
+                <div class="error">
+                  <div class="message">
+                    {{ Label.emailIsMandatory }}
+                  </div>
+                </div>
+              }
+              @if (formControl.hasError(ZError.Email)) {
+                <div class="error">
+                  <div class="message">{{ Label.emailNotValid }}</div>
+                </div>
+              }
+            }
+          </ng-container>
+        </z-email-textbox>
+      }
+
+      @case (ZEditTextWindowType.Url) {
+        <z-url-textbox
+          #tb
+          class="z_edit_text_textbox"
+          [label]="label"
+          [locale]="locale"
+          [maxLength]="maxLength"
+          [formControlName]="Field.Text"
+          [autocomplete]="autocomplete"
+          [maxLength]="maxLength"
+          [showNumbers]="showNumbers"
+          [spellcheck]="spellcheck"
+          [showErrors]="formControl.touched && formControl.invalid"
+          (onChange)="text_onChange(tb.text)"
+          (onEscape)="w.close()"
+          (onEnter)="onEnter()"
+        >
+          <ng-container class="errors">
+            @if (formControl.touched && formControl.invalid) {
+              @if (formControl.hasError(ZError.Required)) {
+                <div class="error">
+                  <div class="message">
+                    {{ Label.urlIsMandatory }}
+                  </div>
+                </div>
+              }
+              @if (formControl.hasError(ZError.Url)) {
+                <div class="error">
+                  <div class="message">{{ Label.urlNotValid }}</div>
+                </div>
+              }
+            }
+          </ng-container>
+        </z-url-textbox>
+      }
+
+      @case (ZEditTextWindowType.MultilineText) {
+        <z-textarea
+          #ta
+          class="z_edit_text_textarea"
+          [label]="label"
+          [locale]="locale"
+          [maxLength]="maxLength"
+          [formControlName]="Field.Text"
+          [maxLength]="maxLength"
+          [showNumbers]="showNumbers"
+          [spellcheck]="spellcheck"
+          [showErrors]="formControl.touched && formControl.invalid"
+          (onChange)="text_onChange(ta.text)"
+          (onEscape)="w.close()"
+          (onConfirm)="onEnter()"
+        >
+          <ng-container class="errors">
+            @if (formControl.touched && formControl.invalid) {
+              @if (formControl.hasError(ZError.Required)) {
+                <div class="error">
+                  <div class="message">{{ Label.fieldIsMandatory }}</div>
+                </div>
+              }
+            }
+          </ng-container>
+        </z-textarea>
+      }
+    }
+  </form>
+</z-window>

@@ -1,0 +1,20 @@
+@font-face {font-family: "appfont";
+  src: url('http://18.153.110.17:1200/fonts/appfont.eot'); /* IE9*/
+  src: url('http://18.153.110.17:1200/fonts/appfont.eot') format('embedded-opentype'), /* IE6-IE8 */
+  url("http://18.153.110.17:1200/fonts/appfont.woff2") format("woff2"),
+  url("http://18.153.110.17:1200/fonts/appfont.woff") format("woff"),
+  url('http://18.153.110.17:1200/fonts/appfont.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('http://18.153.110.17:1200/fonts/appfont.svg') format('svg'); /* iOS 4.1- */
+}
+
+[class^="appfont-"], [class*=" appfont-"] {
+  font-family: 'appfont' !important;
+  font-size: 16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.appfont-home:before { content: "\ea01"; }
+
+$appfont-home: "\ea01";

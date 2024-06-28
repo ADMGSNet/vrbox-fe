@@ -1,0 +1,144 @@
+:host {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10000;
+  display: block;
+}
+
+.z_photogallery_window {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+}
+
+.z_photogallery_container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.z_photogallery_body {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.z_photogallery_arrow_button {
+  position: absolute;
+  top: 50px;
+  bottom: 10px;
+  width: 40px;
+  height: auto;
+  display: flex;
+  font-size: 20px;
+
+  &.left {
+    left: 0;
+  }
+
+  &.right {
+    right: 0;
+  }
+}
+
+.z_photogallery_image {
+  position: absolute;
+  top: 50px;
+  bottom: 10px;
+  left: 40px;
+  right: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.z_photogallery_gallery {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+.z_photogallery_gallery_button {
+  position: relative;
+  width: 40px;
+  height: 80px;
+  margin-top: 20px;
+}
+
+.z_photogallery_scrollbar {
+  position: relative;
+  flex: 1;
+}
+
+.z_photogallery_thumbnails {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex: 1;
+  gap: 10px;
+  height: 100px;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.z_photogallery_thumbnail {
+  position: relative;
+  min-width: 80px;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: all 0.1s linear;
+  border: solid 4px transparent;
+  padding: 4px;
+  z-index: 100;
+
+  &:hover,
+  &.selected {
+    height: 100px;
+  }
+
+  &.selected {
+    border-color: var(--color_600);
+  }
+}
+
+.z_photogallery_open_button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.z_photogallery_close_button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+}

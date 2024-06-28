@@ -1,0 +1,263 @@
+$color: var(--grey_500);
+$border_color: #ddd;
+$errors_border_color: #c70101;
+$error_color: #dd4b39;
+$focused_border_color: var(--color_600);
+
+:host {
+  position: relative;
+  color: $color;
+  display: block;
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.z_textarea_container {
+  position: relative;
+}
+
+.z_textarea_body {
+  position: relative;
+  border: solid 1px var(--grey_150);
+  border-bottom: none;
+  padding: 5px;
+
+  &.disabled {
+    background-color: var(--grey_100);
+  }
+}
+
+.z_textarea_border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: $border_color;
+
+  &.focused {
+    height: 2px;
+    background-color: $focused_border_color;
+  }
+
+  &.red {
+    background-color: brown;
+  }
+}
+
+.z_textarea_placeholder {
+  position: absolute;
+  top: 6px;
+  left: 3px;
+  right: 3px;
+  font-size: 1em;
+  font-weight: 400;
+  color: var(--grey_250);
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &.marginLeft {
+    left: 25px;
+  }
+
+  &.disabled {
+    left: 5px;
+  }
+}
+
+.z_textarea_box {
+  position: relative;
+  top: 0;
+  left: 0;
+  outline: none;
+  // display: flex;
+  display: grid;
+
+  &.paddingRight {
+    padding-right: 24px;
+  }
+
+  &::after {
+    /* Note the weird space! Needed to preventy jumpy behavior */
+    content: attr(data-replicated-value) " ";
+    /* This is how textarea text behaves */
+    white-space: pre-wrap;
+    /* Hidden from view, clicks, and screen readers */
+    visibility: hidden;
+  }
+
+  & > textarea {
+    /* You could leave this, but after a user resizes, then it ruins the auto sizing */
+    resize: none;
+    /* Firefox shows scrollbar on growth, you can hide like this. */
+    overflow: hidden;
+  }
+
+  & > textarea,
+  &::after {
+    /* Identical styling required!! */
+    font: inherit;
+    /* Place on top of each other */
+    grid-area: 1 / 1 / 2 / 2;
+  }
+}
+
+.z_textarea_icon {
+  position: relative;
+  width: 25px;
+}
+
+.z_textarea_icon_container {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  fill: var(--grey_250);
+}
+
+.z_textarea_input {
+  position: relative;
+  flex: 1;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: 1em;
+  border: none;
+  background-color: transparent;
+  color: inherit;
+  text-align: inherit;
+  height: 100%;
+  padding: 0;
+  outline: none;
+  max-width: 100%;
+  min-height: 1em;
+  box-shadow: none;
+  resize: none;
+
+  &.disabled {
+    color: var(--grey_400);
+  }
+
+  &.uppercase {
+    text-transform: uppercase;
+  }
+
+  &.lowercase {
+    text-transform: lowercase;
+  }
+
+  &.capitalize {
+    text-transform: capitalize;
+  }
+
+  &.locked {
+    color: transparent;
+    text-shadow: 0 0 0 var(--grey_500);
+    ;
+  }
+}
+
+.z_textarea_footer {
+  position: relative;
+  min-height: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.z_textarea_label {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--grey_400);
+  user-select: none;
+}
+
+.z_textarea_nums {
+  position: relative;
+  color: var(--grey_500);
+  ;
+  font-weight: normal;
+  font-size: 12px;
+  text-align: left;
+  display: none;
+
+  &.visible {
+    display: inline-block;
+  }
+}
+
+.z_textarea_nums_container {
+  position: relative;
+  display: flex;
+}
+
+.z_textarea_separator {
+  padding: 2px;
+}
+
+.z_textarea_num {
+  font-weight: bold;
+  color: var(--color_800);
+  padding: 2px;
+}
+
+.z_textarea_count {
+  font-weight: bold;
+  padding: 2px;
+}
+
+.z_textarea_brackets {
+  padding: 2px;
+}
+
+.z_textarea_charsLeft {
+  font-weight: bold;
+  color: #b22222;
+}
+
+.z_textarea_errors {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: -2px;
+}
+
+.z_textarea_clear_button {
+  position: absolute;
+  right: 2px;
+  height: 27px;
+  width: 20px;
+  bottom: 0;
+  font-size: 12px;
+
+  & ::ng-deep .z_button_container {
+    .default {
+      color: var(--grey_250);
+    }
+  }
+}
+
+.rightFooter {
+  flex: 1;
+}
+
+.buttons {
+  position: relative;
+  width: 100%;
+  text-align: right;
+
+  .button {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 26px;
+    margin-left: 2px;
+    color: var(--grey_350);
+  }
+}

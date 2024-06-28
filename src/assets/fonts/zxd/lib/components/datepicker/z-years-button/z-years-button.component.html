@@ -1,0 +1,15 @@
+<z-button
+  #b_years
+  alwaysShowFocusOutline
+  class="z_datepicker_window_button {{ ZDatePickerButtonPosition.Right }} z_datepicker_window_button_years"
+  [tabIndex]="index"
+  (onFocus)="openPopup()"
+  (onTab)="closePopup()"
+  (onShiftTab)="closePopup()"
+  (onEnter)="onEnter()"
+  (onKeyDown)="onKeyDown($event)"
+  (onKeyUp)="onKeyUp($event)"
+  (onMouseDown)="onMouseDown()"
+>
+  {{ yyyy }}
+</z-button>

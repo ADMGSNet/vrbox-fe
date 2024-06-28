@@ -1,0 +1,20 @@
+:host {
+  position: relative;
+  display: block;
+}
+
+.z_edit_number_flex {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.z_edit_number_textbox {
+  position: relative;
+  flex: 1;
+  color: var(--grey_750);
+  font-weight: 600;
+}

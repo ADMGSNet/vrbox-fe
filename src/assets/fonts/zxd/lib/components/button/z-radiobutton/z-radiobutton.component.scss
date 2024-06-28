@@ -1,0 +1,107 @@
+:host {
+  height: auto;
+}
+
+.z_button_container {
+  border: none;
+  text-align: left;
+  justify-content: flex-start;
+  font-weight: 400;
+  color: #888;
+  background-color: transparent;
+}
+
+.z_button_content {
+  text-align: left;
+  justify-content: flex-start;
+}
+
+.z_radiobutton_circle {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  min-height: 16px;
+  background-color: transparent;
+  border: solid 2px var(--grey_300);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.z_radiobutton_bullet {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+}
+
+.default {
+  color: white;
+  background-color: transparent;
+
+  .z_radiobutton_circle {
+    background-color: transparent;
+  }
+}
+
+.hover {
+  color: var(--color_200);
+
+  .z_radiobutton_circle {
+    background-color: transparent;
+    border-color: var(--color_600);
+  }
+}
+
+.disabled {
+  background-color: transparent;
+  color: var(--grey_550);
+  font-weight: 300;
+
+  .z_radiobutton_circle {
+    border-color: var(--grey_550);
+  }
+}
+
+.pressed {
+  background-color: transparent;
+  color: white;
+
+  .z_radiobutton_circle {
+    border-color: var(--color_700);
+  }
+
+  .z_radiobutton_bullet {
+    background-color: var(--color_700);
+  }
+}
+
+.selected {
+  background-color: transparent;
+  color: var(--color_100);
+
+  .z_radiobutton_circle {
+    border-color: var(--color_500);
+  }
+
+  .z_radiobutton_bullet {
+    background-color: var(--color_500);
+  }
+}
+
+.disabled.selected {
+  color: var(--grey_550);
+  background-color: transparent;
+
+  .z_radiobutton_circle {
+    border-color: var(--grey_550);
+  }
+
+  .z_radiobutton_bullet {
+    background-color: var(--grey_550);
+  }
+}

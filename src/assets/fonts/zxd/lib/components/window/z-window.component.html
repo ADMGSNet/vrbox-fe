@@ -1,0 +1,104 @@
+<div
+  #overlay
+  class="z_window_overlay"
+  [style.visibility]="isModal ? 'visible' : 'hidden'"
+  [class.dragging]="isDragging"
+></div>
+
+<div
+  #w
+  class="z_window_box"
+  tabindex="0"
+  [style.width]="width"
+  [class.not_modal]="!isModal"
+  [class.with_titleBar]="showTitleBar"
+  [style.width]="width"
+  [style.height]="height ? height : 'auto'"
+  [style.min-width]="minWidth"
+>
+  @if (showTitleBar) {
+    <div
+      #titleBar
+      class="z_window_title_bar"
+    >
+      <div
+        class="z_window_caption"
+        [innerHTML]="caption | safe"
+      ></div>
+      <div
+        #draggable
+        class="zxd_absolute"
+      ></div>
+
+      <z-button
+        #b_cancel
+        class="z_window_cancel_button"
+        preventDefaultOnShiftTab
+        (onClick)="onCancel()"
+        (onShiftTab)="onShiftTab($event)"
+      >
+        <z-icon
+          class="z_window_cancel_icon"
+          [icon]="ZIcon.Cross"
+        ></z-icon>
+        @if (isCancelable) {
+          <div class="z_window_cancel_label">
+            {{ Label.cancel }}
+          </div>
+        } @else {
+          <div class="z_window_cancel_label">
+            {{ Label.close }}
+          </div>
+        }
+      </z-button>
+
+      @if (isConfirmable) {
+        <z-button
+          #b_confirm
+          class="z_window_confirm_button"
+          [class.visible]="showConfirmButton"
+          (onClick)="onConfirm()"
+        >
+          <z-icon
+            class="z_window_confirm_icon"
+            [icon]="ZIcon.Check"
+          ></z-icon>
+          <div class="z_window_confirm_label">{{ Label.confirm }}</div>
+        </z-button>
+      }
+    </div>
+  }
+
+  <div
+    #rectangle
+    class="z_window_rectangle"
+    [class.unselectable]="isDragging"
+  >
+    @if (showStickies) {
+      <div class="z_window_sticky_top"></div>
+    }
+    <div
+      #container
+      class="z_window_container"
+    >
+      <ng-content></ng-content>
+    </div>
+    <div
+      #lastFocusableElement
+      class="z_window_last"
+      tabindex="0"
+      (focusin)="onLastFocusIn($event)"
+    ></div>
+  </div>
+  @if (showStickies) {
+    <div class="z_window_border_bottom"></div>
+  }
+
+  <z-scrollbar
+    class="z_window_scrollbar"
+    [type]="ZScrollBarType.Vertical"
+    [target]="rectangle"
+  ></z-scrollbar>
+
+  <div class="loader"></div>
+</div>

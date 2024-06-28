@@ -1,0 +1,26 @@
+<z-window
+  #w
+  [caption]="caption"
+  [hideConfirmButton]="!showDatePicker || showErrors"
+  (onConfirm)="w_onConfirm()"
+  (onClose)="w_onClose()"
+  (onEscape)="w_onClose()"
+>
+  @if (showDatePicker) {
+    <z-datepicker
+      #dp
+      [label]="label"
+      [placeholder]="placeholder"
+    >
+    </z-datepicker>
+  }
+
+  @if (showErrors) {
+    <div class="z_edit_date_window_error">
+      <div
+        class="message"
+        [innerHTML]="Label.selectDate | safe"
+      ></div>
+    </div>
+  }
+</z-window>

@@ -1,0 +1,39 @@
+:host {
+  position: relative;
+  display: block;
+}
+
+.z_edit_fiscal_code_textbox {
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.z_edit_fiscal_code_result {
+  position: relative;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 8px;
+  border: solid 1px var(--grey_100);
+  background-color: #fafafa;
+}
+
+.z_edit_fiscal_code_result_label {
+  font-weight: 300;
+}
+
+.z_edit_fiscal_code_result_value {
+  font-weight: 600;
+}
+
+.z_edit_fiscal_code_item {
+  position: relative;
+  display: flex;
+  gap: 7px;
+  align-items: baseline;
+}
+
+.z_edit_fiscal_code_result_birthplace {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}

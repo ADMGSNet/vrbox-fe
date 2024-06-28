@@ -2,3 +2,44 @@
     background-image: url("http://18.153.110.17:1200/image/login-left.png");
     background-size: cover;
 }
+
+.bkg-user-pass-input {
+    background-image: url("http://18.153.110.17:1200/image/circle-time.png");
+    background-repeat: no-repeat;
+    background-size: 15px;
+    //backgrount-postion: posso mettere direttamente right e mi spostera l'img sulla destra,
+    //ma utilizzando i pixel rimane piu preciso lo spostamento 
+    background-position:233px;
+    
+    
+}
+
+.color-button{
+    background-color:#1A42D3;
+    color: white;
+    border-radius: 4px;
+    padding: 9px;  
+    margin-top:16px; 
+}
+
+input{
+    background-color: transparent;
+    margin-top:16px;  
+    padding: 13px;  
+    border:solid white 2px;   
+    border-radius: 4px;
+    font-size: x-small;
+    color: white;
+}
+
+input::-webkit-input-placeholder{
+    color:white;
+}
+
+input:-moz-placeholder {
+    color:white;
+}
+//colore trattino titolo mov ( - ) x 
+.color-trattino{
+    color: #0ED3F3;
+}
